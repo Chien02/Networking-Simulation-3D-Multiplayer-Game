@@ -1,0 +1,854 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>TÀI LIỆU THIẾT KẾ KỸ THUẬT (TECHNICAL DESIGN DOCUMENT - TDD)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="367d3581-9aaf-8014-9755-da13019b4793" class="page sans"><header><h1 class="page-title" dir="auto">TÀI LIỆU THIẾT KẾ KỸ THUẬT (TECHNICAL DESIGN DOCUMENT - TDD)</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="367d3581-9aaf-80c6-95c1-f500743fa68d" class=""><strong>Dự án:</strong> Co-op Network Puzzle Simulation Game</p></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-801a-838d-f4079785cf6e" class=""><strong>Vai trò:</strong> Software Architect &amp; Lead Game Designer</p></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-80c0-8920-f8677599fce9" class=""><strong>Công cụ phát triển tích hợp:</strong> Unity Engine (C#)</p></div><div style="display:contents" dir="auto"><h1 id="367d3581-9aaf-80b9-b19d-dc25917935da" class="">1. Cấu Trúc Class (Class Architecture)</h1></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-8047-a2f4-cef96de14e58" class="">Hệ thống được thiết kế theo kiến trúc phân lớp tách biệt giữa dữ liệu logic (Model), xử lý tương tác đồ họa (View/Controller) và quản lý luồng game (Manager) nhằm đảm bảo tính độc lập và khả năng mở rộng hệ thống.</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="367d3581-9aaf-80f9-9367-cb764a1600d5" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">classDiagram
+    class GameManager {
+        +LevelManager LevelManager
+        +NetworkGraph NetworkGraph
+        +EconomyManager EconomyManager
+    }
+    class LevelManager {
+        +LevelData CurrentLevel
+        +float TimeRemaining
+        +ConditionEvaluator Evaluator
+        +LoadLevel(LevelData) void
+        +StartLevel() void
+    }
+    class EconomyManager {
+        +float CurrentBudget
+        +DeductBudget(float) bool
+        +RefundBudget(float) void
+    }
+    class NetworkGraph {
+        +List~NetworkNode~ Nodes
+        +ConnectNodes(NodeId, PortId, NodeId, PortId) bool
+        +DisconnectNodes(NodeId, PortId) void
+        +SimulateRouting(Packet) void
+    }
+    class NetworkNode {
+        &lt;&lt;abstract&gt;&gt;
+        +string NodeId
+        +string IPAddress
+        +List~Port~ LogicPorts
+        +ProcessPacket(Packet, Port)* Port
+    }
+    class RouterNode {
+        +Dictionary~string, int~ RoutingTable
+    }
+    class SwitchNode {
+        +Dictionary~string, int~ MacTable
+    }
+    class EndDeviceNode {
+        +string TargetDestinationIP
+        +OnPacketReceived Event
+    }
+    class NodePhysical {
+        +NetworkNode LogicNode
+        +List~PortPhysical~ PhysicalPorts
+        +OnDragged() void
+        +OnPlaced() void
+    }
+    class PortPhysical {
+        +int PortId
+        +bool IsOccupied
+        +Vector3 AnchorPosition
+    }
+    class CableDragger {
+        +PortPhysical StartPort
+        +PortPhysical HoveredPort
+        +UpdateLineRenderer() void
+    }
+
+    GameManager *-- LevelManager
+    GameManager *-- NetworkGraph
+    GameManager *-- EconomyManager
+    LevelManager *-- NetworkGraph
+    NetworkGraph &quot;1&quot; *-- &quot;0..*&quot; NetworkNode
+    RouterNode --|&gt; NetworkNode
+    SwitchNode --|&gt; NetworkNode
+    EndDeviceNode --|&gt; NetworkNode
+    NodePhysical &quot;1&quot; *-- &quot;0..*&quot; PortPhysical
+    NodePhysical --&gt; NetworkNode : Binds to
+    CableDragger ..&gt; PortPhysical : Interacts with</code></pre></div><div style="display:contents" dir="auto"><h2 id="367d3581-9aaf-80a5-8f1e-f1a70ac92516" class="">1.1. Lớp Quản lý &amp; Logic Hệ thống (Managers &amp; Core Logic)</h2></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-808c-8c0c-d4613edcd11f" class=""><code>GameManager</code> (Singleton)</h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8045-834e-f1a917822be2" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Đóng vai trò là trung tâm điều phối phối hợp (Orchestrator) toàn cục của trò chơi, quản lý vòng đời khởi tạo và thiết lập các kết nối giữa các phân hệ quản lý độc lập.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80d2-8532-f51d4e95980c" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8010-8348-e5e2a738784e" class="bulleted-list"><li style="list-style-type:circle"><code>LevelManager</code>: Tham chiếu đến bộ quản lý màn chơi.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8014-b4be-f76bdddf2c50" class="bulleted-list"><li style="list-style-type:circle"><code>NetworkGraph</code>: Tham chiếu đến bộ xử lý đồ thị mạng lõi hiện tại.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80c7-9131-f536580c5ec5" class="bulleted-list"><li style="list-style-type:circle"><code>EconomyManager</code>: Tham chiếu đến bộ quản lý ngân sách toàn cục.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-80e3-9fd1-f64af450e8ef" class=""><code>LevelManager</code></h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-806e-a376-ee171f71b3b7" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Quản lý vòng lặp trạng thái của màn chơi bao gồm việc đọc cấu hình, đếm ngược thời gian, và kích hoạt trạng thái thắng/thua.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8022-8561-dcf3b11f8741" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80cc-af85-ccfdae9b467e" class="bulleted-list"><li style="list-style-type:circle"><code>CurrentLevel</code>: Dữ liệu của màn chơi hiện tại (<code>LevelData</code>).</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-808c-897f-ece73c9485ab" class="bulleted-list"><li style="list-style-type:circle"><code>TimeRemaining</code>: Thời gian còn lại của màn chơi (giây).</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8096-b524-f7e3c116d633" class="bulleted-list"><li style="list-style-type:circle"><code>IsLevelActive</code>: Cờ trạng thái xác định game đang chạy hay đang ở màn hình chờ/briefing.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80d5-8c64-f035e1286583" class="bulleted-list"><li style="list-style-type:disc"><strong>Phương thức:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80b2-8abc-c56b38d5388b" class="bulleted-list"><li style="list-style-type:circle"><code>LoadLevel(LevelData data)</code>: Nhận dữ liệu giải đố thô, ra lệnh cho <code>NetworkGraph</code> dựng các Node cố định.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80f7-b4d0-d2b15457ec21" class="bulleted-list"><li style="list-style-type:circle"><code>StartLevel()</code>: Bắt đầu kích hoạt đồng hồ đếm ngược khi người chơi xác nhận hiểu rõ nhiệm vụ.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80ca-be14-eb23f19ff66a" class="bulleted-list"><li style="list-style-type:circle"><code>UpdateTimer(float deltaTime)</code>: Khấu trừ thời gian thực và kích hoạt sự kiện thất bại khi thời gian về 0.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-8028-b1ae-d4495d61bb6a" class=""><code>EconomyManager</code></h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8006-a155-f68ae42c1b80" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Ràng buộc các quyết định xây dựng hạ tầng của người chơi trong phạm vi ngân sách cho phép của màn chơi.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80fa-a61c-fd3f5afd924d" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8056-a650-d192aa8916f3" class="bulleted-list"><li style="list-style-type:circle"><code>CurrentBudget</code>: Số tiền khả dụng hiện tại của người chơi trong màn.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8064-8f47-ef0750997e0b" class="bulleted-list"><li style="list-style-type:disc"><strong>Phương thức:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8077-8940-feba2e4379a7" class="bulleted-list"><li style="list-style-type:circle"><code>DeductBudget(float amount)</code>: Trừ tiền khi người chơi mua thêm vật tư tiêu hao (như dây thừng). Trả về <code>false</code> nếu không đủ số dư.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-800a-a430-d0480f592d0e" class="bulleted-list"><li style="list-style-type:circle"><code>RefundBudget(float amount)</code>: Hoàn trả lại tiền khi người chơi thu hồi/dỡ dây thừng trước khi vận hành mạng lưới.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-80bc-8723-eb6b158bec42" class=""><code>NetworkGraph</code></h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-801c-b35f-caf097282bb0" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Quản lý cấu trúc liên kết mạng (Topology) dưới dạng mô hình toán học đồ thị tĩnh (Graph), bao gồm các Đỉnh (Node) và Cạnh (Edge).</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-806d-ae6b-d633628a1b02" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8054-9f01-d6e8deb902d6" class="bulleted-list"><li style="list-style-type:circle"><code>Nodes</code>: Danh sách tất cả các đối tượng <code>NetworkNode</code> đang tham gia vào mạng lưới đồ thị.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80dd-be67-da8179f4014c" class="bulleted-list"><li style="list-style-type:disc"><strong>Phương thức:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80b4-a79b-f9190efcf535" class="bulleted-list"><li style="list-style-type:circle"><code>ConnectNodes(string nodeA, int portA, string nodeB, int portB, float length)</code>: Tạo một liên kết logic (Edge) hai chiều giữa hai cổng cụ thể của hai thiết bị mạng.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-800d-8ff9-d2d6aaa276c9" class="bulleted-list"><li style="list-style-type:circle"><code>DisconnectNodes(string nodeId, int portId)</code>: Bẻ gãy mối liên kết logic tại cổng chỉ định và giải phóng cổng.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-803e-a2a8-c2aa7c89eb44" class="bulleted-list"><li style="list-style-type:circle"><code>SimulateRouting(Packet packet)</code>: Chạy thuật toán duyệt đồ thị thời gian thực để đưa gói tin đi qua các node dựa trên quy tắc logic của từng thiết bị.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-80d3-8da5-ed5a8a4e4838" class="">1.2. Lớp Dữ liệu Thiết bị Mạng (Network Node Models)</h3></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-801e-a90d-e194bef07a12" class=""><code>NetworkNode</code> (Abstract Base Class)</h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80b1-80be-f55546c83643" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Định nghĩa bộ khung dữ liệu logic chuẩn cho mọi loại thiết bị phần cứng xuất hiện trong trò chơi.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8020-bb1a-c77ad53c6ede" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8019-be3a-c6227a844b2f" class="bulleted-list"><li style="list-style-type:circle"><code>NodeId</code>: Định danh duy nhất (UUID) của thiết bị.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80f9-869c-c25d3353575b" class="bulleted-list"><li style="list-style-type:circle"><code>IPAddress</code>: Địa chỉ IP logic được cấu hình bởi người chơi (hoặc mặc định).</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80f3-894e-f3de42c6562a" class="bulleted-list"><li style="list-style-type:circle"><code>LogicPorts</code>: Danh sách các đối tượng cổng logic (<code>Port</code>) gắn liền với thiết bị.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8002-9b15-d29b808f6e31" class="bulleted-list"><li style="list-style-type:disc"><strong>Phương thức:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80ab-a99f-e5cc91742139" class="bulleted-list"><li style="list-style-type:circle"><code>ProcessPacket(Packet packet, Port incomingPort)</code>: Hàm thuần ảo (Pure Virtual). Mỗi thiết bị kế thừa bắt buộc phải override để định nghĩa thuật toán định tuyến gói tin cụ thể của mình.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-80d0-a302-ca01cf35025e" class=""><code>RouterNode</code> (Kế thừa từ <code>NetworkNode</code>)</h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80f9-abd5-eeccc8a27e04" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Định tuyến gói tin dựa trên địa chỉ IP đích ở Lớp 3 (Network Layer).</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8098-bbe2-f1e9b3e16e28" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80b6-aff8-e77487ecf01b" class="bulleted-list"><li style="list-style-type:circle"><code>RoutingTable</code>: Bảng định tuyến dạng Key-Value (<code>Dictionary&lt;string, int&gt;</code>) ánh xạ giữa <code>DestinationIP</code> và <code>PortId</code> đầu ra.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-80af-a72b-f26ef9c19d7b" class=""><code>SwitchNode</code> (Kế thừa từ <code>NetworkNode</code>)</h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80d4-8334-d9f2eb3cf3e9" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Chuyển mạch gói tin ở Lớp 2 (Data Link Layer) dựa trên cơ chế học địa chỉ.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-807d-ba96-ccab65218b72" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8040-a285-dbf8b3e085bb" class="bulleted-list"><li style="list-style-type:circle"><code>MacAddressTable</code>: Bảng ánh xạ giữa <code>SourceIP</code> của gói tin và <code>PortId</code> vật lý tương ứng nhận vào để tối ưu hóa đường truyền cục bộ.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-8016-a9b3-e4cd70158c91" class=""><code>EndDeviceNode</code> (Kế thừa từ <code>NetworkNode</code> - Đại diện cho các Ngôi làng đầu cuối)</h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80ca-ad27-f9c534be37e5" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Đóng vai trò là điểm đầu cuối gửi nhận nội dung bài toán (Nguồn và Đích).</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8028-981f-fdb09c67fee4" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8094-9940-d15017ca0b6b" class="bulleted-list"><li style="list-style-type:circle"><code>OnPacketReceivedSuccessfully</code>: Sự kiện (Event) kích hoạt khi nhận đúng gói tin đích với đầy đủ yêu cầu (ví dụ: đã kiểm tra mã hóa).</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-8061-b28e-cf55e8e7039a" class="">1.3. Lớp Biểu diễn &amp; Tương tác Vật lý (Physics &amp; Interaction Views)</h3></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-8050-b50a-d76019b7902d" class=""><code>NodePhysical</code></h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80bf-8345-c49bede4ca29" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Thành phần chịu trách nhiệm quản lý va chạm vật lý, xử lý sự kiện kéo thả của người chơi trong không gian thế giới game và cập nhật biểu đồ tọa độ.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80cc-8da9-f1af26351ece" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-807b-9295-c3955d739241" class="bulleted-list"><li style="list-style-type:circle"><code>LogicNode</code>: Tham chiếu đến đối tượng logic <code>NetworkNode</code> tương ứng.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80ab-9306-ea76fef09416" class="bulleted-list"><li style="list-style-type:circle"><code>PhysicalPorts</code>: Danh sách các điểm neo vật lý (<code>PortPhysical</code>) nằm trên Model.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80ba-a353-ca863b9c40e3" class="bulleted-list"><li style="list-style-type:disc"><strong>Phương thức:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80f8-893a-f74f0fe453ec" class="bulleted-list"><li style="list-style-type:circle"><code>OnDragged()</code>: Kích hoạt khi người chơi di chuyển thiết bị mạng, cập nhật liên tục tọa độ tạm thời để đồng bộ vị trí đồ họa.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8010-8a26-f56d19a1418e" class="bulleted-list"><li style="list-style-type:circle"><code>OnPlaced()</code>: Kích hoạt khi người chơi thả thiết bị xuống một vị trí cố định, thực hiện tính toán cập nhật dữ liệu vị trí lên Bản đồ nhỏ (Minimap).</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-808c-8c7d-d88ea17511f3" class=""><code>PortPhysical</code></h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8085-82a1-f3e970aaace3" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Biểu diễn vị trí không gian (Transform Anchor) của cổng cắm trên mô hình thiết bị 3D/2D.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8070-b6e2-fd200a68c88d" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8025-b9ef-e85697e204e1" class="bulleted-list"><li style="list-style-type:circle"><code>PortId</code>: Chỉ số cổng trùng khớp với cổng logic trong <code>NetworkNode</code>.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8022-9262-e2bcaccbb77e" class="bulleted-list"><li style="list-style-type:circle"><code>IsOccupied</code>: Trạng thái cổng đã bị cắm dây thừng vào hay chưa.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8051-8119-d527ba08c7d0" class="bulleted-list"><li style="list-style-type:circle"><code>AnchorPosition</code>: Tọa độ Vector thế giới chính xác của cổng để làm tâm hút.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-8031-ae6a-e3e683028339" class=""><code>CableDragger</code></h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8019-87c1-da3514667e7c" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Quản lý trạng thái kéo, thả và kết nối của môi trường truyền dẫn (dây thừng/cáp).</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-801a-bff2-dbc3ff850b15" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8003-aa48-f07011860dbe" class="bulleted-list"><li style="list-style-type:circle"><code>StartPort</code>: Cổng vật lý xuất phát của sợi dây.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8010-9e72-c2dea55ccede" class="bulleted-list"><li style="list-style-type:circle"><code>HoveredPort</code>: Cổng vật lý hiện tại mà đầu dây tự do đang lơ lửng tiếp cận (nếu có).</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h1 id="367d3581-9aaf-80f5-a625-edbbc7707a0b" class="">2. Thiết Kế Dữ Liệu Màn Chơi Theo Hướng Data-Driven (Data-Driven Level Design)</h1></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-80e9-8ee4-dae3897b2bbf" class="">Toàn bộ thông tin cấu trúc, ràng buộc cơ chế của một màn chơi đều được phân tách hoàn toàn khỏi mã nguồn của Engine, định hình thông qua cấu trúc dữ liệu tĩnh (JSON).</p></div><div style="display:contents" dir="auto"><h2 id="367d3581-9aaf-80e5-a481-e6330c0497fa" class="">2.1. Template Dữ liệu Mẫu (Level Data JSON Template)</h2></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-807e-9c5a-f7de93e19ef6" class="">JSON</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" integrity="sha512-QXFMVAusM85vUYDaNgcYeU3rzSlc+bTV4JvkfJhjxSHlQEo+ig53BtnGkvFTiNJh8D+wv6uWAQ2vJaVmxe8d3w==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="367d3581-9aaf-80f1-9233-e6600d5191cf" class="code code-wrap"><code class="language-json" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;levelId&quot;: &quot;level_02_routing_challenge&quot;,
+  &quot;title&quot;: &quot;Mạng Lưới Phù Thủy Cấp Cao&quot;,
+  &quot;description&quot;: &quot;Làng A cần thiết lập kết nối bảo mật đến Làng B, ngăn chặn Thương nhân C đọc trộm thông tin thương mại đi ngang qua tuyến đường trung tâm.&quot;,
+  &quot;objectiveDescription&quot;: &quot;Tạo mạng lưới liên thông dữ liệu hai chiều có tích hợp tính năng kiểm tra tính toàn vẹn và bảo mật thông tin.&quot;,
+  &quot;sourceVillageIP&quot;: &quot;10.0.0.10&quot;,
+  &quot;destinationVillageIP&quot;: &quot;10.0.0.20&quot;,
+  &quot;startingBudget&quot;: 1200.00,
+  &quot;timeLimitInSeconds&quot;: 300.0,
+  &quot;fixedNodes&quot;: [
+    {
+      &quot;id&quot;: &quot;node_village_a&quot;,
+      &quot;name&quot;: &quot;Làng Thương Nhân A&quot;,
+      &quot;type&quot;: &quot;EndDevice&quot;,
+      &quot;ipAddress&quot;: &quot;10.0.0.10&quot;,
+      &quot;position&quot;: [0.0, 0.0, 10.0]
+    },
+    {
+      &quot;id&quot;: &quot;node_village_b&quot;,
+      &quot;name&quot;: &quot;Làng Thương Nhân B&quot;,
+      &quot;type&quot;: &quot;EndDevice&quot;,
+      &quot;ipAddress&quot;: &quot;10.0.0.20&quot;,
+      &quot;position&quot;: [200.0, 0.0, 85.0]
+    }
+  ],
+  &quot;providedTools&quot;: [
+    {
+      &quot;type&quot;: &quot;Router&quot;,
+      &quot;maxQuantity&quot;: 2
+    },
+    {
+      &quot;type&quot;: &quot;Switch&quot;,
+      &quot;maxQuantity&quot;: 1
+    }
+  ]
+}</code></pre></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-80b9-ba5f-e3671e830590" class="">2.2. Quy trình Đọc và Khởi tạo Màn chơi (Parsing &amp; Instantiation Workflow)</h3></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-80b6-9c52-ecb14d70f0df" class="">Hệ thống tuân thủ nghiêm ngặt quy trình 3 bước tuần tự khi tải màn chơi nhằm triệt tiêu tối đa độ trễ logic và bất đồng bộ trạng thái:</p></div><div style="display:contents" dir="auto"><pre id="367d3581-9aaf-80ab-95ed-f9e92822e06b" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">graph TD
+    A[Bắt đầu tải màn chơi] --&gt; B[Đọc file JSON từ bộ nhớ]
+    B --&gt; C[Khởi tạo cấu trúc dữ liệu LevelData thuần]
+    C --&gt; D[Dựng các Node cố định fixedNodes lên đồ thị toán học]
+    D --&gt; E[Engine sinh vật thể đồ họa NodePhysical tương ứng tại tọa độ position]
+    E --&gt; F[Nạp số lượng thiết bị vào khu vực Spawn Zone theo providedTools]
+    F --&gt; G[Cài đặt tham số cho Budget và Timer - Chờ người chơi kích hoạt]
+    G --&gt; H[Hoàn tất thiết lập màn chơi]</code></pre></div><div style="display:contents" dir="auto"><ol type="1" id="367d3581-9aaf-8013-9d9a-cb7a8a263081" class="numbered-list" start="1"><li><strong>Giai đoạn Giải mã Dữ liệu (Deserialization):</strong> Lớp <code>LevelManager</code> gọi bộ Parser của Engine để chuyển đổi chuỗi văn bản JSON thành một Object thuộc lớp <code>LevelData</code> trong bộ nhớ.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="367d3581-9aaf-803f-8f42-daea7f3f9a7e" class="numbered-list" start="2"><li><strong>Khởi tạo Thực thể Đồ thị (Logical Graph Instantiation):</strong> Hệ thống duyệt qua danh sách <code>fixedNodes</code>. Với mỗi phần tử, hệ thống tạo đối tượng logic <code>EndDeviceNode</code> tương ứng, nạp các giá trị <code>ipAddress</code> và đưa vào trình quản lý <code>NetworkGraph</code>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="367d3581-9aaf-8017-9200-e3fd8b5777da" class="numbered-list" start="3"><li><strong>Dựng Không gian Vật lý (Physical Spawning):</strong> * Dựa trên mảng <code>position</code> <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>X</mi><mo separator="true">,</mo><mi>Y</mi><mo separator="true">,</mo><mi>Z</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[X, Y, Z]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="mclose">]</span></span></span></span></span><span>﻿</span></span> của <code>fixedNodes</code>, Engine thực hiện Instantiate các Prefab đồ họa của ngôi làng ra thế giới game.<div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80f5-b3d7-f2e3b1cd9aa5" class="bulleted-list"><li style="list-style-type:disc">Hệ thống đọc mảng <code>providedTools</code> để thiết lập số lượng giới hạn phần cứng nằm trong &quot;Khu vực cấp phát ban đầu&quot; (Spawn Zone) , đồng thời nạp cấu hình <code>startingBudget</code> cho <code>EconomyManager</code>.</li></ul></div></li></ol></div><div style="display:contents" dir="auto"><h1 id="367d3581-9aaf-8000-a0c6-f89e6f9323a8" class="">3. Cơ Chế Snapping Vật Lý (Physics Snapping Mechanics)</h1></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-807b-a141-dd02dfa3992c" class="">Cơ chế Snapping xử lý bài toán chuẩn hóa dữ liệu hình học, tự động kéo đầu nối của môi trường truyền dẫn vật lý (dây thừng) bám chặt vào tâm của các cổng mạng vật lý khi nằm trong một bán kính dung sai chỉ định.</p></div><div style="display:contents" dir="auto"><h2 id="367d3581-9aaf-802e-ac82-df134309e2ef" class="">3.1. Các Tham số Kỹ thuật Cấu hình (Configuration Parameters)</h2></div><div style="display:contents" dir="ltr"><table id="367d3581-9aaf-80aa-a0d0-c1b19306ae83" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="367d3581-9aaf-80b2-90f6-c201d4a0383c"><td id="&lt;Ft`" class=""><strong>Tên tham số</strong></td><td id="KrDc" class=""><strong>Kiểu dữ liệu</strong></td><td id="|UwW" class=""><strong>Giá trị mặc định gợi ý</strong></td><td id="ZW`I" class=""><strong>Mô tả chức năng kỹ thuật</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="367d3581-9aaf-8022-a3e1-f171009d3417"><td id="&lt;Ft`" class=""><code>SnapDistance</code></td><td id="KrDc" class=""><code>float</code></td><td id="|UwW" class=""><code>1.5f</code> (mét thế giới)</td><td id="ZW`I" class="">Bán kính hình cầu quét tìm kiếm quanh tâm của cổng cắm mạng. Nếu đầu cáp nằm trong vùng này, lực hút snapping sẽ được kích hoạt.</td></tr></div><div style="display:contents" dir="ltr"><tr id="367d3581-9aaf-804f-af8d-c06bc5b8d968"><td id="&lt;Ft`" class=""><code>MaxCableLength</code></td><td id="KrDc" class=""><code>float</code></td><td id="|UwW" class=""><code>100.0f</code> (mét thế giới)</td><td id="ZW`I" class="">Giới hạn chiều dài vật lý tối đa của một sợi cáp/dây thừng được kéo nối giữa hai thực thể phần cứng.</td></tr></div><div style="display:contents" dir="ltr"><tr id="367d3581-9aaf-805c-a761-fe708f99aefb"><td id="&lt;Ft`" class=""><code>DetectionLayerMask</code></td><td id="KrDc" class=""><code>LayerMask</code></td><td id="|UwW" class=""><code>Layer: NetworkPorts</code></td><td id="ZW`I" class="">Bộ lọc va chạm vật lý, ép tia quét hoặc vùng quét chỉ tương tác với các Collider đại diện cho cổng, bỏ qua các va chạm địa hình.</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h2 id="367d3581-9aaf-8096-8de0-c5302fe5d062" class="">3.2. Thuật toán Xử lý Hình học và Kiểm tra Chiếm chỗ (Mathematical Algorithm)</h2></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-8027-bee2-c7b2a48091c2" class="">Bước 1: Quét tìm kiếm thực thể cổng lân cận (Proximity Query)</h3></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-809e-b03c-cb4662707c7a" class="">Khi người chơi đang trong trạng thái kéo một sợi dây cáp (<code>isDragging == true</code>), vị trí đầu cáp tự do (<style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mrow><mi>c</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">P_{cable}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">ab</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span>) liên tục di chuyển theo vị trí trỏ của chuột/tay nhân vật trên mặt phẳng 3D/2D. Hệ thống sử dụng một vùng quét hình cầu (Sphere Overlay/Cast) tại tọa độ đầu cáp để tìm kiếm cổng:</p></div><div style="display:contents" dir="auto"><figure id="367d3581-9aaf-80be-b6b2-c1922f160a3f" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>S</mi><mo>=</mo><mo stretchy="false">{</mo><mtext>PortPhysical </mtext><mi>p</mi><mo>∣</mo><mi mathvariant="normal">∥</mi><msub><mi>P</mi><mi>p</mi></msub><mo>−</mo><msub><mi>P</mi><mrow><mi>c</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi></mrow></msub><mi mathvariant="normal">∥</mi><mo>≤</mo><mtext>SnapDistance</mtext><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">S = \{ \text{PortPhysical } p \mid \| P_{p} - P_{cable} \| \le \text{SnapDistance} \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord text"><span class="mord">PortPhysical </span></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord">∥</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">ab</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∥</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">SnapDistance</span></span><span class="mclose">}</span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-800e-b59c-d9258eff8ea0" class="">Trong đó, <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">P_{p}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span> là tọa độ không gian ba chiều thế giới (<code>AnchorPosition</code>) của cổng vật lý $p$.</p></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-80f5-8da7-da32db109484" class="">Bước 2: Kiểm tra trạng thái chiếm chỗ và Dung lượng kết nối (Occupancy Check)</h3></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-8036-a538-c4c82bdefee4" class="">Nếu tập hợp <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span></span><span>﻿</span></span> tìm thấy nhiều hơn một cổng thỏa mãn, hệ thống sẽ tiến hành lọc và sắp xếp cổng có khoảng cách Euclidean ngắn nhất. Tuy nhiên, cổng được chọn (<style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mrow><mi>t</mi><mi>a</mi><mi>r</mi><mi>g</mi><mi>e</mi><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">p_{target}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span>) phải vượt qua các bộ lọc điều kiện logic nghiêm ngặt:</p></div><div style="display:contents" dir="auto"><ol type="1" id="367d3581-9aaf-80d9-8664-d52227afb92c" class="numbered-list" start="1"><li><strong>Bộ lọc Trạng thái cắm (</strong><code><strong>IsOccupied</strong></code><strong>):</strong> Kiểm tra xem cổng này đã có sợi dây nào kết nối trước đó chưa. Nếu <code>p_target.IsOccupied == true</code>, thuật toán lập tức từ chối snap và giữ nguyên đầu dây ở trạng thái tự do bám theo chuột để tránh xung đột kết nối.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="367d3581-9aaf-80fd-9e63-ccec15d5ca5b" class="numbered-list" start="2"><li><strong>Bộ lọc Loại môi trường:</strong> Đảm bảo loại cáp đang kéo tương thích với loại cổng vật lý (ví dụ: cáp đồng không thể cắm vào cổng quang, dây thừng loại nhẹ không cắm được vào cổng đại sảnh xa).</li></ol></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-80f8-8b51-c531a79fa886" class="">Bước 3: Đưa về vị trí Snap và Chốt liên kết đồ thị (Snapping Implementation)</h3></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-8032-bc84-fadfc3b6c655" class="">Khi cổng <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mrow><mi>t</mi><mi>a</mi><mi>r</mi><mi>g</mi><mi>e</mi><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">p_{target}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span> hợp lệ được xác định:</p></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8032-8800-d6f141195482" class="bulleted-list"><li style="list-style-type:disc"><strong>Xử lý đồ họa (Visual Snapping):</strong> Tọa độ đầu dây cáp lập tức được gán cưỡng bức bằng tọa độ tâm của cổng:<div style="display:contents" dir="auto"><figure id="367d3581-9aaf-80cc-96f2-c116590c73fd" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>P</mi><mrow><mi>c</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi></mrow></msub><mo>=</mo><msub><mi>P</mi><mrow><mi>p</mi><mi mathvariant="normal">_</mi><mi>t</mi><mi>a</mi><mi>r</mi><mi>g</mi><mi>e</mi><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">P_{cable} = P_{p\_target}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">ab</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0503em;vertical-align:-0.367em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mtight" style="margin-right:0.02778em;">_</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.367em;"><span></span></span></span></span></span></span></span></span></span></span></div></figure></div></li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8020-ac22-efd8180a5b77" class="bulleted-list"><li style="list-style-type:disc"><strong>Xử lý Logic (Logical Binding):</strong> Khi người chơi thực hiện hành động nhả chuột/thả nút xác nhận kết nối, hệ thống sẽ thực thi hàm chốt logic:<div style="display:contents" dir="auto"><ol type="1" id="367d3581-9aaf-8054-b5d1-c325f0e34622" class="numbered-list" start="1"><li>Đánh dấu trạng thái cổng: <code>p_target.IsOccupied = true</code>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="367d3581-9aaf-8077-b3fa-d51b9a65e37f" class="numbered-list" start="2"><li>Tính toán khoảng cách thực tế giữa hai Node để lưu lại thông số chiều dài sợi dây phục vụ cho bài toán tính toán độ trễ và suy hao tín hiệu sau này.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="367d3581-9aaf-80e6-9941-eadb0394050f" class="numbered-list" start="3"><li>Gọi hàm <code>NetworkGraph.ConnectNodes(...)</code> để đồng bộ đồ thị toán học.</li></ol></div></li></ul></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-80f9-8151-d6a7cd63ea82" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

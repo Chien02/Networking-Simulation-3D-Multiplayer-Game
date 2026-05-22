@@ -1,0 +1,880 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Tính năng: Hệ Thống Xếp Đặt Vật Thể Trên Lưới (Grid System) và Cơ Chế Snapping</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="367d3581-9aaf-8032-a1ce-f9754e364ce1" class="page sans"><header><h1 class="page-title" dir="auto"><strong>Tính năng:</strong> Hệ Thống Xếp Đặt Vật Thể Trên Lưới (Grid System) và Cơ Chế Snapping</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="367d3581-9aaf-80e1-8750-ccbd5613b122" class=""><strong>Vị trí:</strong> Unity Technical Director &amp; Game Architect</p></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-807c-b191-ca49693dff43" class=""><strong>Môi trường phát triển:</strong> Unity Engine (C#)</p></div><div style="display:contents" dir="auto"><h1 id="367d3581-9aaf-8045-8202-ec159374929c" class="">1. Cấu Trúc Class Hướng Đối Tượng Trong Unity (Unity-Based Class Architecture)</h1></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-804a-bbc0-f818efea8712" class="">Để đảm bảo hệ thống có thể viết được <strong>Unit Test</strong> độc lập mà không cần khởi chạy môi trường đồ họa của Unity, kiến trúc được phân tách nghiêm ngặt thành hai tầng: <strong>Tầng Logic Thuần (Pure C# - Model/Controller)</strong> và <strong>Tầng Hiển Thị/Vật Lý (MonoBehaviour - View/Input)</strong>.</p></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-8019-961b-ea1c038d8d11" class="">
+</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="367d3581-9aaf-809d-b862-f7da950f6a8f" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">classDiagram
+    class GridCell {
+        +Vector2Int Coordinates
+        +bool IsOccupied
+        +bool IsBlocked
+        +string OccupyingObjectId
+    }
+
+    class GridData {
+        +Vector2Int Dimensions
+        +float CellSize
+        +Dictionary~Vector2Int, GridCell~ CellMatrix
+        +IsCellValid(Vector2Int) bool
+        +SetCellStatus(Vector2Int, bool) void
+    }
+
+    class GridSystem {
+        +GridData Data
+        +Action~Vector2Int, bool~ OnCellStateChanged
+        +WorldToGrid(Vector3) Vector2Int
+        +GridToWorld(Vector2Int, Vector3) Vector3
+        +CanPlaceObject(Vector2Int, Vector2Int) bool
+    }
+
+    class SnapController {
+        &lt;&lt;MonoBehaviour&gt;&gt;
+        +GridSystem ModelGrid
+        +PlacementObject CurrentSelected
+        +float SnapTolerance
+        +OnDragDetected() void
+        +OnReleaseDetected() void
+    }
+
+    class PlacementObject {
+        &lt;&lt;MonoBehaviour&gt;&gt;
+        +string InstanceId
+        +Vector2Int SizeInCells
+        +Vector2Int PreviousValidGridIndex
+        +Vector3 PivotOffset
+        +UpdateVisualPosition(Vector3) void
+    }
+
+    %% Relationships
+    GridData &quot;1&quot; *-- &quot;0..*&quot; GridCell : Contains
+    GridSystem *-- GridData : Encapsulates
+    SnapController --&gt; GridSystem : Queries Logic
+    SnapController --&gt; PlacementObject : Manipulates</code></pre></div><div style="display:contents" dir="auto"><h2 id="367d3581-9aaf-809e-9875-f3f97d85722a" class="">1.1. Tầng Logic Thuần (Pure C# - Định hướng Test-Driven)</h2></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-80fb-9837-e5a4b7ffd2ba" class=""><code>GridCell</code> (Pure C# Class)</h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8052-97a0-ef977762a60d" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Đại diện cho dữ liệu nguyên tử của một ô đơn lẻ trên lưới. Không chứa bất kỳ tham chiếu nào đến <code>GameObject</code> hay <code>Transform</code>.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80eb-845c-e26bac8652de" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80cd-8f58-c8f1f8aefc26" class="bulleted-list"><li style="list-style-type:circle"><code>Coordinates</code> (<code>Vector2Int</code>): Tọa độ định danh vị trí ô <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X, Y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span> trong ma trận lưới.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-802e-864a-ed4a0de94e26" class="bulleted-list"><li style="list-style-type:circle"><code>IsOccupied</code> (<code>bool</code>): Trạng thái ô đang bị chiếm chỗ bởi vật thể nào đó hay không.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80cf-aa57-ece73cabc9b3" class="bulleted-list"><li style="list-style-type:circle"><code>IsBlocked</code> (<code>bool</code>): Trạng thái ô bị khóa vĩnh viễn bởi chướng ngại vật của màn chơi.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8023-9d56-f8a6b4af60db" class="bulleted-list"><li style="list-style-type:circle"><code>OccupyingObjectId</code> (<code>string</code>): ID duy nhất của vật thể đang chiếm giữ ô này (rỗng nếu trống).</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-80a5-a152-e881bf0edbe3" class=""><code>GridData</code> (Pure C# Class / ScriptableObject Backing Model)</h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8024-ba48-eb557eb8f50f" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Lưu trữ toàn bộ ma trận dữ liệu trạng thái của lưới. Lớp này có thể được khởi tạo trực tiếp từ mã nguồn Unit Test.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80b9-bee4-c033b0b0308e" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8052-93a2-f4751cc8d39f" class="bulleted-list"><li style="list-style-type:circle"><code>Dimensions</code> (<code>Vector2Int</code>): Kích thước tổng thể của lưới (Chiều rộng <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span></span><span>﻿</span></span>, Chiều cao <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span></span></span></span></span><span>﻿</span></span>).</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8019-9966-f0505fe4f2bc" class="bulleted-list"><li style="list-style-type:circle"><code>CellSize</code> (<code>float</code>): Kích thước cạnh của một ô vuông.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8078-8356-e86bfaedccd2" class="bulleted-list"><li style="list-style-type:circle"><code>CellMatrix</code> (<code>Dictionary&lt;Vector2Int, GridCell&gt;</code>): Bảng tra cứu băm (Hash-map) ánh xạ từ tọa độ <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>D</mi></mrow><annotation encoding="application/x-tex">2D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span></span><span>﻿</span></span> sang thực thể dữ liệu ô giúp tối ưu hóa thuật toán tìm kiếm thời gian thực.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80b2-813c-ea7dcd046920" class="bulleted-list"><li style="list-style-type:disc"><strong>Phương thức:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8051-990b-d70a960c9ebb" class="bulleted-list"><li style="list-style-type:circle"><code>IsCellValid(Vector2Int coord)</code> <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span></span><span>﻿</span></span> <code>bool</code>: Kiểm tra tọa độ chỉ định có nằm trong phạm vi ma trận và không bị khóa (<code>IsBlocked</code>).</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-801d-9bdc-ea3eedadcf60" class="bulleted-list"><li style="list-style-type:circle"><code>SetCellStatus(Vector2Int coord, bool occupied, string objId)</code> <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span></span><span>﻿</span></span> <code>void</code>: Cập nhật trạng thái chiếm chỗ cho một ô chỉ định.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-80e6-9f3f-d1c9ca6aae51" class=""><code>GridSystem</code> (Pure C# Logic Controller)</h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8054-bb5b-e07f8d61f8d0" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Bộ não xử lý toán học và logic vận hành hệ thống lưới. Tính toán các thuật toán chuyển đổi không gian và kiểm tra điều kiện xếp đặt.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8064-9570-db00bd87b78c" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80d7-8756-f2a28220cad4" class="bulleted-list"><li style="list-style-type:circle"><code>Data</code> (<code>GridData</code>): Mô hình dữ liệu lưới được đóng gói bên trong.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80e2-a124-d907ac85f53b" class="bulleted-list"><li style="list-style-type:disc"><strong>Sự kiện (Events):</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8057-b694-c4e6cbe9c427" class="bulleted-list"><li style="list-style-type:circle"><code>OnCellStateChanged</code> (<code>Action&lt;Vector2Int, bool&gt;</code>): Bắn ra tín hiệu khi có sự thay đổi trạng thái của một ô, giúp tầng hiển thị cập nhật visual (Ví dụ: Đổi màu lưới) mà không bị phụ thuộc luồng (Loose Coupling).</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-809f-bdb4-cdc9684f87d8" class="bulleted-list"><li style="list-style-type:disc"><strong>Phương thức:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8047-89e9-d718807e0fc2" class="bulleted-list"><li style="list-style-type:circle"><code>WorldToGrid(Vector3 worldPos)</code> <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span></span><span>﻿</span></span> <code>Vector2Int</code>: Chuyển đổi tọa độ không gian <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mi>D</mi></mrow><annotation encoding="application/x-tex">3D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">3</span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span></span><span>﻿</span></span> thế giới sang chỉ số ô <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>D</mi></mrow><annotation encoding="application/x-tex">2D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span></span><span>﻿</span></span>.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-803f-b9b2-ebd357b950bf" class="bulleted-list"><li style="list-style-type:circle"><code>GridToWorld(Vector2Int gridCoord, Vector3 gridOrigin)</code> <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span></span><span>﻿</span></span> <code>Vector3</code>: Chuyển đổi ngược từ chỉ số ô sang tọa độ trung tâm hoặc góc của ô đó trong không gian thế giới.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8091-aeb1-f09fdcd9ea0f" class="bulleted-list"><li style="list-style-type:circle"><code>CanPlaceObject(Vector2Int originCoord, Vector2Int objectSize)</code> <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span></span><span>﻿</span></span> <code>bool</code>: Kiểm tra xem một vùng không gian lưới tính từ điểm gốc có đủ điều kiện chứa một vật thể có kích thước chỉ định hay không.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h2 id="367d3581-9aaf-8049-8c81-f922aca1513c" class="">1.2. Tầng Hiển Thị và Tương Tác Unity (MonoBehaviour Layer)</h2></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-8040-9829-c15db3c3da03" class=""><code>SnapController</code> (MonoBehaviour)</h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8015-86c1-c79a125fb853" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Thu thập tương tác đầu vào từ người chơi (Chuột/Cảm ứng), phát hiện sự kiện kéo thả (Drag &amp; Drop) và điều phối trạng thái dính hút (Snapping).</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80da-84e9-f7d9b09e4c3f" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8083-ab3e-e5d185423266" class="bulleted-list"><li style="list-style-type:circle"><code>ModelGrid</code>: Tham chiếu tới thực thể điều khiển logic <code>GridSystem</code>.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8003-b455-cfbae10d0b92" class="bulleted-list"><li style="list-style-type:circle"><code>CurrentSelected</code> (<code>PlacementObject</code>): Vật thể hiện đang được người chơi cầm và kéo đi.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80f0-b032-e775258856df" class="bulleted-list"><li style="list-style-type:circle"><code>SnapToleranceRadius</code> (<code>float</code>): Bán kính dung sai cho phép kích hoạt hiệu ứng hút.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80dd-90bc-e3ece9f3b507" class="bulleted-list"><li style="list-style-type:disc"><strong>Phương thức:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80d0-b1cc-d2436efe9578" class="bulleted-list"><li style="list-style-type:circle"><code>OnDragDetected(Vector3 inputWorldPos)</code> <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span></span><span>﻿</span></span> <code>void</code>: Cập nhật vị trí tạm thời của vật thể đi theo con trỏ chuột.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80c6-ba42-e6c91c84f4ed" class="bulleted-list"><li style="list-style-type:circle"><code>OnReleaseDetected()</code> <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span></span><span>﻿</span></span> <code>void</code>: Kích hoạt khi người chơi thả chuột, đưa tọa độ về bộ máy kiểm tra occupancies và đưa ra quyết định Snap cố định hoặc Reset vị trí.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-80b7-b5a4-f03aa3376776" class=""><code>PlacementObject</code> (MonoBehaviour)</h3></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8067-9283-d8e21eb23324" class="bulleted-list"><li style="list-style-type:disc"><strong>Nhiệm vụ:</strong> Gắn trực tiếp lên các Prefab hiển thị của vật thể, lưu trữ kích thước hình học và tọa độ lịch sử.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80bd-b001-e9e29224a3a7" class="bulleted-list"><li style="list-style-type:disc"><strong>Thuộc tính:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8067-8a81-d3d4df098823" class="bulleted-list"><li style="list-style-type:circle"><code>InstanceId</code> (<code>string</code>): Chuỗi định danh duy nhất của thực thể vật thể.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8077-beab-d2af834ceb87" class="bulleted-list"><li style="list-style-type:circle"><code>SizeInCells</code> (<code>Vector2Int</code>): Kích thước chiếm chỗ trên không gian lưới (Ví dụ: Khối <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2 \times 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span><span>﻿</span></span> ô).</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-806f-91b0-c7d78186bd5c" class="bulleted-list"><li style="list-style-type:circle"><code>PreviousValidGridIndex</code> (<code>Vector2Int</code>): Lưu lại tọa độ ô hợp lệ cuối cùng trước khi bị kéo đi để phục vụ logic rollback khi lỗi snap.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8019-b0ba-d3aff395d543" class="bulleted-list"><li style="list-style-type:circle"><code>PivotOffset</code> (<code>Vector3</code>): Độ lệch điểm neo thiết kế để căn chỉnh chính xác tâm hình học vật thể vào lưới.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-809b-80db-ed7d12801d7c" class="bulleted-list"><li style="list-style-type:disc"><strong>Phương thức:</strong><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80a4-b147-e34b7907df8b" class="bulleted-list"><li style="list-style-type:circle"><code>UpdateVisualPosition(Vector3 targetWorldPos)</code> <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span></span><span>﻿</span></span> <code>void</code>: Thực hiện di chuyển mượt mà (Lerp/SmoothDamp) phần hình ảnh hiển thị của vật thể tới tọa độ đích.</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h1 id="367d3581-9aaf-8024-b821-deafbb7e4c86" class="">2. Cấu Trúc Dữ Liệu Màn Chơi Data-Driven (ScriptableObject &amp; JSON Integration)</h1></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-8070-879e-f367d449f2a2" class="">Hệ thống lưu trữ cấu trúc màn chơi tách biệt để dễ dàng chỉnh sửa bởi Game Designer thông qua Unity Inspector (<code>ScriptableObject</code>) hoặc lưu/tải động từ bộ nhớ máy, máy chủ (<code>JSON</code>).</p></div><div style="display:contents" dir="auto"><h2 id="367d3581-9aaf-8097-8845-dfcabb07a48e" class="">2.1. Template Dữ liệu Mẫu (JSON Cấu hình Màn chơi)</h2></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" integrity="sha512-QXFMVAusM85vUYDaNgcYeU3rzSlc+bTV4JvkfJhjxSHlQEo+ig53BtnGkvFTiNJh8D+wv6uWAQ2vJaVmxe8d3w==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="367d3581-9aaf-80a2-b8d8-f0edbbb2d153" class="code code-wrap"><code class="language-json" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;levelId&quot;: &quot;level_grid_puzzle_01&quot;,
+  &quot;gridSettings&quot;: {
+    &quot;width&quot;: 10,
+    &quot;height&quot;: 10,
+    &quot;cellSize&quot;: 1.5
+  },
+  &quot;blockedCells&quot;: [
+    { &quot;x&quot;: 0, &quot;y&quot;: 0 },
+    { &quot;x&quot;: 0, &quot;y&quot;: 1 },
+    { &quot;x&quot;: 5, &quot;y&quot;: 5 }
+  ],
+  &quot;preplacedObjects&quot;: [
+    {
+      &quot;prefabId&quot;: &quot;obj_router_medium&quot;,
+      &quot;gridIndex&quot;: { &quot;x&quot;: 2, &quot;y&quot;: 3 },
+      &quot;rotationDegrees&quot;: 90.0
+    },
+    {
+      &quot;prefabId&quot;: &quot;obj_switch_8port&quot;,
+      &quot;gridIndex&quot;: { &quot;x&quot;: 4, &quot;y&quot;: 4 },
+      &quot;rotationDegrees&quot;: 0.0
+    }
+  ]
+}</code></pre></div><div style="display:contents" dir="auto"><h2 id="367d3581-9aaf-8053-a70a-d87b1346e1a4" class="">2.2. Kiến Trúc Ánh Xạ và Lớp Trung Gian (Data Mapping Architecture)</h2></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-80f3-884d-ecee8b2896d1" class="">Để đồng bộ cấu trúc dữ liệu, chúng ta thiết kế một lớp C# thuần có gắn thuộc tính tuần tự hóa <code>[Serializable]</code>. Lớp này hoạt động như một thực thể dữ liệu trung gian (Data Transfer Object):</p></div><div style="display:contents" dir="auto"><pre id="367d3581-9aaf-80ef-90c7-eb461f88f53c" class="code code-wrap"><code class="language-csharp" style="white-space:pre-wrap;word-break:break-all">[System.Serializable]
+public class LevelGridSaveData
+{
+    public string levelId;
+    public Vector2Int gridDimensions;
+    public float cellSize;
+    public List&lt;Vector2Int&gt; blockedCells;
+    public List&lt;PreplacedObjectData&gt; preplacedObjects;
+}
+
+[System.Serializable]
+public class PreplacedObjectData
+{
+    public string prefabId;
+    public Vector2Int gridIndex;
+    public float rotationDegrees;
+}</code></pre></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8017-8907-e7ba3e7c3fff" class="bulleted-list"><li style="list-style-type:disc"><strong>Tải qua ScriptableObject:</strong> Designer chỉnh sửa trực tiếp trên file Asset kế thừa từ lớp <code>ScriptableObject</code> chứa biến <code>LevelGridSaveData</code>.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-808e-8bdc-c23cd2668750" class="bulleted-list"><li style="list-style-type:disc"><strong>Tải qua JSON:</strong> Gọi <code>JsonUtility.FromJson&lt;LevelGridSaveData&gt;(jsonString)</code> để chuyển đổi trực tiếp chuỗi văn bản thành dữ liệu runtime.</li></ul></div><div style="display:contents" dir="auto"><h2 id="367d3581-9aaf-80ed-ba05-c48fbf835b5d" class="">2.3. Luồng Khởi Tạo Màn Chơi (Initialization Workflow)</h2></div><div style="display:contents" dir="auto"><pre id="367d3581-9aaf-8078-8b44-fab4f08e7919" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">graph TD
+    A[Bắt đầu tải màn chơi] --&gt; B[Đọc cấu trúc LevelGridSaveData từ SO hoặc JSON]
+    B --&gt; C[Khởi tạo thực thể GridData hoàn toàn trống với kích thước Width/Height]
+    C --&gt; D[Duyệt mảng blockedCells để gán cờ IsBlocked = true cho các ô tương ứng]
+    D --&gt; E[Gửi thực thể GridData hoàn chỉnh vào lớp điều khiển logic GridSystem]
+    E --&gt; F[Duyệt danh sách preplacedObjects]
+    F --&gt; G[Tra cứu danh mục Prefab trong Registry để tìm đối tượng khớp với prefabId]
+    G --&gt; H[Chuyển đổi tọa độ gridIndex sang Vector3 World Position qua GridSystem]
+    H --&gt; I[Instantiate Prefab ra thế giới game, cập nhật trạng thái IsOccupied = true]
+    I --&gt; J[Màn chơi sẵn sàng tiếp nhận Input từ SnapController]</code></pre></div><div style="display:contents" dir="auto"><h1 id="367d3581-9aaf-8014-aa9e-fe907362cdee" class="">3. Thuật Toán Snapping &amp; Logic Tọa Độ Lưới (Physics Snapping &amp; Math Logic)</h1></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-80df-a4a7-ee937c4309f0" class="">3.1. Thuật toán Chuyển Đổi Không Gian Toán Học</h3></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-805e-b207-d4db1e4eb766" class="">Giả định lưới phẳng nằm ngang trên mặt phẳng tương tác <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">,</mo><mi>Z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X, Z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span> của không gian Unity $3D$, với tọa độ gốc của hệ thống lưới nằm tại vị trí thế giới <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mrow><mi>o</mi><mi>r</mi><mi>i</mi><mi>g</mi><mi>i</mi><mi>n</mi></mrow></msub><mo>=</mo><mo stretchy="false">(</mo><msub><mi>X</mi><mi>o</mi></msub><mo separator="true">,</mo><msub><mi>Y</mi><mi>o</mi></msub><mo separator="true">,</mo><msub><mi>Z</mi><mi>o</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W_{origin} = (X_o, Y_o, Z_o)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">or</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mord mathnormal mtight">in</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span>.</p></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-801d-84b1-f6a221c8b4f0" class="">Từ Tọa độ Thế giới sang Chỉ số Lưới (World <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span></span><span>﻿</span></span> Grid)</h3></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-806b-8b2a-cf57d6b05462" class="">Cho trước vị trí thế giới <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mrow><mi>p</mi><mi>o</mi><mi>s</mi></mrow></msub><mo>=</mo><mo stretchy="false">(</mo><msub><mi>X</mi><mi>w</mi></msub><mo separator="true">,</mo><msub><mi>Y</mi><mi>w</mi></msub><mo separator="true">,</mo><msub><mi>Z</mi><mi>w</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W_{pos} = (X_w, Y_w, Z_w)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">os</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span>, ta áp dụng hàm sàn toán học <code>Mathf.FloorToInt</code> để ánh xạ chính xác vùng không gian liên tục vào chỉ số ô nguyên:</p></div><div style="display:contents" dir="auto"><figure id="367d3581-9aaf-8057-a7c5-ee3fdc362aad" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>G</mi><mi>r</mi><mi>i</mi><msub><mi>d</mi><mi>X</mi></msub><mo>=</mo><mo stretchy="false">⌊</mo><mfrac><mrow><msub><mi>X</mi><mi>w</mi></msub><mo>−</mo><msub><mi>X</mi><mi>o</mi></msub></mrow><mrow><mi>C</mi><mi>e</mi><mi>l</mi><mi>l</mi><mi>S</mi><mi>i</mi><mi>z</mi><mi>e</mi></mrow></mfrac><mo stretchy="false">⌋</mo></mrow><annotation encoding="application/x-tex">Grid_X = \lfloor \frac{X_w - X_o}{CellSize} \rfloor</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">G</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mopen">⌊</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.05764em;">llS</span><span class="mord mathnormal">i</span><span class="mord mathnormal">ze</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">⌋</span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><figure id="367d3581-9aaf-80ce-b7dd-de040e1ac74a" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>G</mi><mi>r</mi><mi>i</mi><msub><mi>d</mi><mi>Y</mi></msub><mo>=</mo><mo stretchy="false">⌊</mo><mfrac><mrow><msub><mi>Z</mi><mi>w</mi></msub><mo>−</mo><msub><mi>Z</mi><mi>o</mi></msub></mrow><mrow><mi>C</mi><mi>e</mi><mi>l</mi><mi>l</mi><mi>S</mi><mi>i</mi><mi>z</mi><mi>e</mi></mrow></mfrac><mo stretchy="false">⌋</mo></mrow><annotation encoding="application/x-tex">Grid_Y = \lfloor \frac{Z_w - Z_o}{CellSize} \rfloor</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">G</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mopen">⌊</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.05764em;">llS</span><span class="mord mathnormal">i</span><span class="mord mathnormal">ze</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">⌋</span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-8065-9b43-c86023e27a5f" class="">Sử dụng <code>Mathf.FloorToInt</code> thay vì <code>Mathf.RoundToInt</code> giúp đảm bảo vùng biên của ô tính từ cạnh trái sang cạnh phải luôn thuộc về đúng một chỉ số duy nhất, triệt tiêu lỗi nhảy ô (jittering) tại biên.</p></div><div style="display:contents" dir="auto"><h3 id="367d3581-9aaf-8051-98df-ff0d0f54d1dd" class="">Từ Chỉ số Lưới sang Tọa độ Thế giới ($Grid \rightarrow World$)</h3></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-8089-b1ca-c22a1ebca1d6" class="">Để đưa vật thể về nằm chính xác tại <strong>tâm hình học</strong> của ô lưới, đồng thời tích hợp độ lệch điểm neo riêng biệt (<code>PivotOffset</code>) của từng Model:</p></div><div style="display:contents" dir="auto"><figure id="367d3581-9aaf-8093-b3bd-c2e8bf81e670" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>W</mi><mrow><mi>t</mi><mi>a</mi><mi>r</mi><mi>g</mi><mi>e</mi><mi>t</mi><mi mathvariant="normal">.</mi><mi>x</mi></mrow></msub><mo>=</mo><mi>G</mi><mi>r</mi><mi>i</mi><msub><mi>d</mi><mi>X</mi></msub><mo>×</mo><mi>C</mi><mi>e</mi><mi>l</mi><mi>l</mi><mi>S</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>+</mo><mo stretchy="false">(</mo><mi>C</mi><mi>e</mi><mi>l</mi><mi>l</mi><mi>S</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>×</mo><mn>0.5</mn><mo stretchy="false">)</mo><mo>+</mo><msub><mi>X</mi><mi>o</mi></msub><mo>+</mo><mi>P</mi><mi>i</mi><mi>v</mi><mi>o</mi><mi>t</mi><mi>O</mi><mi>f</mi><mi>f</mi><mi>s</mi><mi>e</mi><mi>t</mi><mi mathvariant="normal">.</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">W_{target.x} = Grid_X \times CellSize + (CellSize \times 0.5) + X_o + PivotOffset.x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">t</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">G</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.05764em;">llS</span><span class="mord mathnormal">i</span><span class="mord mathnormal">ze</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.05764em;">llS</span><span class="mord mathnormal">i</span><span class="mord mathnormal">ze</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0.5</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.02778em;">tO</span><span class="mord mathnormal" style="margin-right:0.10764em;">ff</span><span class="mord mathnormal">se</span><span class="mord mathnormal">t</span><span class="mord">.</span><span class="mord mathnormal">x</span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><figure id="367d3581-9aaf-8012-8b27-d7c940552b2a" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>W</mi><mrow><mi>t</mi><mi>a</mi><mi>r</mi><mi>g</mi><mi>e</mi><mi>t</mi><mi mathvariant="normal">.</mi><mi>y</mi></mrow></msub><mo>=</mo><msub><mi>Y</mi><mi>o</mi></msub><mo>+</mo><mi>P</mi><mi>i</mi><mi>v</mi><mi>o</mi><mi>t</mi><mi>O</mi><mi>f</mi><mi>f</mi><mi>s</mi><mi>e</mi><mi>t</mi><mi mathvariant="normal">.</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">W_{target.y} = Y_o + PivotOffset.y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">t</span><span class="mord mtight">.</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.02778em;">tO</span><span class="mord mathnormal" style="margin-right:0.10764em;">ff</span><span class="mord mathnormal">se</span><span class="mord mathnormal">t</span><span class="mord">.</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><figure id="367d3581-9aaf-8036-aac5-cd5ab877fea1" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>W</mi><mrow><mi>t</mi><mi>a</mi><mi>r</mi><mi>g</mi><mi>e</mi><mi>t</mi><mi mathvariant="normal">.</mi><mi>z</mi></mrow></msub><mo>=</mo><mi>G</mi><mi>r</mi><mi>i</mi><msub><mi>d</mi><mi>Y</mi></msub><mo>×</mo><mi>C</mi><mi>e</mi><mi>l</mi><mi>l</mi><mi>S</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>+</mo><mo stretchy="false">(</mo><mi>C</mi><mi>e</mi><mi>l</mi><mi>l</mi><mi>S</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>×</mo><mn>0.5</mn><mo stretchy="false">)</mo><mo>+</mo><msub><mi>Z</mi><mi>o</mi></msub><mo>+</mo><mi>P</mi><mi>i</mi><mi>v</mi><mi>o</mi><mi>t</mi><mi>O</mi><mi>f</mi><mi>f</mi><mi>s</mi><mi>e</mi><mi>t</mi><mi mathvariant="normal">.</mi><mi>z</mi></mrow><annotation encoding="application/x-tex">W_{target.z} = Grid_Y \times CellSize + (CellSize \times 0.5) + Z_o + PivotOffset.z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">t</span><span class="mord mtight">.</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">G</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.05764em;">llS</span><span class="mord mathnormal">i</span><span class="mord mathnormal">ze</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.05764em;">llS</span><span class="mord mathnormal">i</span><span class="mord mathnormal">ze</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0.5</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.02778em;">tO</span><span class="mord mathnormal" style="margin-right:0.10764em;">ff</span><span class="mord mathnormal">se</span><span class="mord mathnormal">t</span><span class="mord">.</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><h2 id="367d3581-9aaf-80b0-9119-fe637dba3038" class="">3.2. Thuật Toán Tìm Kiếm Ô Trống Gần Nhất (Nearest Cell Search Optimization)</h2></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-8024-a908-fc006978ae0e" class="">Khi người chơi thực hiện thả một vật thể có kích thước lớn tại một vị trí bất kỳ, hệ thống cần quét tìm ô hợp lệ có khoảng cách Euclidean ngắn nhất một cách tối ưu hiệu năng.</p></div><div style="display:contents" dir="auto"><ol type="1" id="367d3581-9aaf-8089-86c7-ccdc3a88f424" class="numbered-list" start="1"><li><strong>Thu hẹp không gian tìm kiếm:</strong> Chuyển đổi tọa độ thả chuột hiện tại sang chỉ số lưới làm gốc <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>c</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>e</mi><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">C_{center}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ce</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">er</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span>.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="367d3581-9aaf-80bd-81eb-cf0209bca1f3" class="numbered-list" start="2"><li><strong>Quét vùng theo vòng xoắn (Spiral Search Matrix):</strong> Thay vì quét toàn bộ ma trận lưới lớn gây tốn tài nguyên, thuật toán bắt đầu mở rộng dần từ <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>c</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>e</mi><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">C_{center}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ce</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">er</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span> theo các vòng vuông đồng tâm có bán kính từ <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mn>0</mn><mo>→</mo><msub><mi>R</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub></mrow><annotation encoding="application/x-tex">r = 0 \rightarrow R_{max}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ma</span><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span> (Giới hạn bởi tham số cấu hình hiệu dụng).</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="367d3581-9aaf-80cf-8fbf-f2148d4f038c" class="numbered-list" start="3"><li><strong>Tối ưu phép toán khoảng cách hình học:</strong> * Với mỗi ô <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>c</mi><mi>a</mi><mi>n</mi><mi>d</mi><mi>i</mi><mi>d</mi><mi>a</mi><mi>t</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">C_{candidate}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">an</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span> trong vòng quét, chuyển đổi chỉ số của nó sang tọa độ thế giới <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mrow><mi>c</mi><mi>a</mi><mi>n</mi><mi>d</mi><mi>i</mi><mi>d</mi><mi>a</mi><mi>t</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">W_{candidate}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">an</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span>.<div style="display:contents" dir="auto"><ul id="367d3581-9aaf-801d-9296-c7f2ce3d5e2d" class="bulleted-list"><li style="list-style-type:disc">Tính toán khoảng cách tới vị trí chuột thả thực tế <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mrow><mi>m</mi><mi>o</mi><mi>u</mi><mi>s</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">W_{mouse}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">se</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span>.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80c7-aefe-c7a58972f2a2" class="bulleted-list"><li style="list-style-type:disc"><strong>Tiêu chuẩn kỹ thuật:</strong> Tuyệt đối không dùng hàm <code>Vector3.Distance(A, B)</code> vì hàm này bắt buộc CPU thực thi phép tính Căn bậc hai (<style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mi>x</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.2397em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8003em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal">x</span></span></span><span style="top:-2.7603em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2397em;"><span></span></span></span></span></span></span></span></span></span><span>﻿</span></span>), gây suy giảm hiệu năng nghiêm trọng khi lặp. Thay vào đó, hệ thống sử dụng bình phương khoảng cách:</li></ul></div></li></ol></div><div style="display:contents" dir="auto"><figure id="367d3581-9aaf-80cb-a6bc-dcc370c2b188" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>sqrMagnitude</mtext><mo>=</mo><mo stretchy="false">(</mo><mi>A</mi><mi mathvariant="normal">.</mi><mi>x</mi><mo>−</mo><mi>B</mi><mi mathvariant="normal">.</mi><mi>x</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><mi>A</mi><mi mathvariant="normal">.</mi><mi>y</mi><mo>−</mo><mi>B</mi><mi mathvariant="normal">.</mi><mi>y</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><mi>A</mi><mi mathvariant="normal">.</mi><mi>z</mi><mo>−</mo><mi>B</mi><mi mathvariant="normal">.</mi><mi>z</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\text{sqrMagnitude} = (A.x - B.x)^2 + (A.y - B.y)^2 + (A.z - B.z)^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">sqrMagnitude</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mord">.</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord">.</span><span class="mord mathnormal">x</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mord">.</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord">.</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mord">.</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord">.</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><pre id="367d3581-9aaf-8041-8fa9-ef51aa2d69c8" class="code code-wrap"><code class="language-csharp" style="white-space:pre-wrap;word-break:break-all">// Minh họa cấu trúc thuật toán tìm ô gần nhất
+float minSqrDistance = float.MaxValue;
+Vector2Int bestGridCoord = Vector2Int.one * -1;
+
+// Vòng lặp kiểm tra tập hợp ô ứng viên trong bán kính quét r
+foreach (Vector2Int candidateCoord in ScannedSpiralCells)
+{
+    if (gridSystem.CanPlaceObject(candidateCoord, currentObject.SizeInCells))
+    {
+        Vector3 worldTarget = gridSystem.GridToWorld(candidateCoord);
+        float sqrDist = (worldTarget - currentMouseWorldPos).sqrMagnitude;
+
+        if (sqrDist &lt; minSqrDistance)
+        {
+            minSqrDistance = sqrDist;
+            bestGridCoord = candidateCoord;
+        }
+    }
+}</code></pre></div><div style="display:contents" dir="auto"><h2 id="367d3581-9aaf-8060-9309-e5eef006253c" class="">3.3. Logic Xử lý Va Chạm và Chiếm Chỗ (Grid Occlusion Handling)</h2></div><div style="display:contents" dir="auto"><pre id="367d3581-9aaf-808b-a8d2-d5500d04b42a" class="code code-wrap"><code class="language-mermaid" style="white-space:pre-wrap;word-break:break-all">flowchart TD
+    A[Người chơi nhả chuột/Thả vật thể] --&gt; B[Chuyển đổi vị trí thả sang tọa độ lưới gốc]
+    B --&gt; C{Kiểm tra diện tích chiếm chỗ: CanPlaceObject?}
+    C -- Hợp lệ hoàn toàn --&gt; D[Cập nhật IsOccupied = true cho toàn bộ dải ô bao phủ]
+    D --&gt; E[Gọi hàm GridToWorld tính vị trí chính xác tâm ô]
+    E --&gt; F[Thực hiện Snapping vật thể cố định vào tọa độ mới]
+    F --&gt; G[Cập nhật PreviousValidGridIndex = Tọa độ hiện tại]
+
+    C -- Không hợp lệ / Bị chiếm hoặc khóa --&gt; H{Tìm kiếm ô trống lân cận trong bán kính hiệu dụng?}
+    H -- Tìm thấy ô trống gần nhất --&gt; E
+    H -- Không tìm thấy ô trống nào --&gt; I[Kích hoạt Logic Bật Ngược - Rollback]
+    I --&gt; J[Lấy tọa độ từ biến PreviousValidGridIndex]
+    J --&gt; K[Trả vật thể về vị trí hợp lệ cũ trên lưới hiển thị]</code></pre></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80a4-834a-c96f539bd689" class="bulleted-list"><li style="list-style-type:disc"><strong>Xử lý đa ô (Multi-cell Occlusion):</strong> Khi một vật thể có kích thước lớn hơn <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>×</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1 \times 1 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span><span>﻿</span></span> (Ví dụ: <style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">2 \times 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span></span><span>﻿</span></span>) được đặt xuống, điểm neo gốc (Pivot) nằm ở ô dưới cùng bên trái. Hệ thống sẽ chạy một vòng lặp lồng hai phương trình để quét qua toàn bộ các ô trong dải:<div style="display:contents" dir="auto"><figure id="367d3581-9aaf-807a-ae1e-cba26f20bfcb" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Dải kiểm tra</mtext><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>∣</mo><mi>G</mi><mi>r</mi><mi>i</mi><msub><mi>d</mi><mi>X</mi></msub><mo>≤</mo><mi>x</mi><mo>&lt;</mo><mi>G</mi><mi>r</mi><mi>i</mi><msub><mi>d</mi><mi>X</mi></msub><mo>+</mo><mi>S</mi><mi>i</mi><mi>z</mi><msub><mi>e</mi><mi>X</mi></msub><mo>∧</mo><mi>G</mi><mi>r</mi><mi>i</mi><msub><mi>d</mi><mi>Y</mi></msub><mo>≤</mo><mi>y</mi><mo>&lt;</mo><mi>G</mi><mi>r</mi><mi>i</mi><msub><mi>d</mi><mi>Y</mi></msub><mo>+</mo><mi>S</mi><mi>i</mi><mi>z</mi><msub><mi>e</mi><mi>Y</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\text{Dải kiểm tra} = \{ (x, y) \mid Grid_X \le x &lt; Grid_X + Size_X \land Grid_Y \le y &lt; Grid_Y + Size_Y \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord text"><span class="mord">Dải kiểm tra</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">G</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">G</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">G</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">G</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span></span></div></figure></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-8027-ad89-f27e4ded76b2" class="">Nếu có bất kỳ ô nào thuộc tập hợp trên có thuộc tính <code>IsOccupied == true</code> hoặc <code>IsBlocked == true</code>, toàn bộ khu vực đó được đánh dấu là không hợp lệ.</p></div></li></ul></div><div style="display:contents" dir="auto"><h2 id="367d3581-9aaf-80b0-9669-dc32d1dad153" class="">3.4. Các Tham Số Cấu Hình Quan Trọng Trong Unity Inspector</h2></div><div style="display:contents" dir="auto"><p id="367d3581-9aaf-8020-8dc6-f21275925e40" class="">Để Game Designer có thể chủ động cân chỉnh trực quan cảm giác điều khiển (Game Feel), lớp <code>SnapController</code> cần công khai các tham số sau ra cửa sổ Inspector:</p></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-80db-aab1-d7d71d52ada7" class="bulleted-list"><li style="list-style-type:disc"><code><strong>Snap Radius Tolerance</strong></code><strong> (</strong><code><strong>float</strong></code><strong>):</strong> Ngưỡng khoảng cách tối đa (mét). Nếu khoảng cách từ vật thể tới tâm ô lưới nhỏ hơn giá trị này, hiệu ứng hút sẽ tự động giật vật thể vào tâm. Nếu lớn hơn, vật thể vẫn trượt tự do theo chuột.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8073-996f-d57c13c515c8" class="bulleted-list"><li style="list-style-type:disc"><code><strong>Grid Line Visual Material</strong></code><strong> (</strong><code><strong>Material</strong></code><strong>):</strong> Chất liệu dựng lưới hiển thị giúp người chơi xác định rõ biên giới các ô.</li></ul></div><div style="display:contents" dir="auto"><ul id="367d3581-9aaf-8075-8057-cf9d503d639e" class="bulleted-list"><li style="list-style-type:disc"><code><strong>Invalid Overlay Color</strong></code><strong> (</strong><code><strong>Color</strong></code><strong>):</strong> Mã màu sắc (Ví dụ: Đỏ alpha) áp lên vật thể hiển thị khi người chơi kéo vào vùng ô đã bị chiếm chỗ, cảnh báo không thể thực hiện hành động thả.</li></ul></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

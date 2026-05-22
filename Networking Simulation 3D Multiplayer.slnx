@@ -1,4 +1,6 @@
 ﻿<Solution>
+  <Project Path="NetworkingSimulation.Runtime.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="NetworkingSimulation.EditModeTests.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
 </Solution>
