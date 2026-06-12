@@ -1,11 +1,11 @@
 [Licensing::Module] Trying to connect to existing licensing client channel...
 Built from '6000.4/staging' branch; Version is '6000.4.2f1 (7a4c1aeef971) revision 8014874'; Using compiler version '194234433'; Build Type 'Release'
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-LEGION" at "2026-05-22T11:51:33.2223967Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-LEGION" at "2026-06-10T15:42:58.6812427Z"
 OS: 'Windows 11  (10.0.26200) Professional' Language: 'en' Physical Memory: 15556 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
 System  architecture: x64
 Process architecture: x64
-Date: 2026-05-22T11:51:33Z
+Date: 2026-06-10T15:42:58Z
 
 COMMAND LINE ARGUMENTS:
 D:\UnityHub\UnityEditors\6000.4.2f1\Editor\Unity.exe
@@ -19,7 +19,7 @@ D:/Game Projects/Networking Simulation 3D Multiplayer
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-53364
+58169
 -licensingIpc
 LicenseClient-LEGION
 -force-d3d12
@@ -68,12 +68,12 @@ D:/Game Projects/Networking Simulation 3D Multiplayer
     "memorysetup-job-temp-allocator-block-size=2097152"
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
-Player connection [23324]  Target information:
+Player connection [11140]  Target information:
 
-Player connection [23324]  * "[IP] 192.168.5.61 [Port] 0 [Flags] 2 [Guid] 1293339433 [EditorId] 1293339433 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-9HCSJE4) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [11140]  * "[IP] 192.168.5.64 [Port] 0 [Flags] 2 [Guid] 607869985 [EditorId] 607869985 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-9HCSJE4) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [23324] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [23324] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [11140] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [11140] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 7
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
@@ -85,7 +85,7 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 4.14 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 4.49 ms, found 4 plugins.
 Initialize engine version: 6000.4.2f1 (7a4c1aeef971)
 [Subsystems] Discovering subsystems at path D:/UnityHub/UnityEditors/6000.4.2f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path D:/Game Projects/Networking Simulation 3D Multiplayer/Assets
@@ -103,13 +103,13 @@ Initialize mono
 Mono path[0] = 'D:/UnityHub/UnityEditors/6000.4.2f1/Editor/Data/Managed'
 Mono path[1] = 'D:/UnityHub/UnityEditors/6000.4.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'D:/UnityHub/UnityEditors/6000.4.2f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56672
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56940
 CodeReloadManager initialized
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/UnityHub/UnityEditors/6000.4.2f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: D:/UnityHub/UnityEditors/6000.4.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001538 seconds.
+Registered in 0.002138 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Package Manager log level set to [2]
@@ -118,44 +118,44 @@ Package Manager log level set to [2]
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.474 seconds
-Domain Reload Profiling: 1011ms
-	BeginReloadAssembly (170ms)
-	RebuildCommonClasses (56ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (68ms)
-	LoadAllAssembliesAndSetupDomain (229ms)
-		LoadAssemblies (168ms)
-		AnalyzeDomain (219ms)
-			TypeCache.Refresh (217ms)
-				TypeCache.ScanAssembly (202ms)
-	FinalizeReload (476ms)
+- Finished resetting the current domain, in  0.526 seconds
+Domain Reload Profiling: 1135ms
+	BeginReloadAssembly (172ms)
+	RebuildCommonClasses (50ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (82ms)
+	LoadAllAssembliesAndSetupDomain (290ms)
+		LoadAssemblies (171ms)
+		AnalyzeDomain (276ms)
+			TypeCache.Refresh (274ms)
+				TypeCache.ScanAssembly (255ms)
+	FinalizeReload (528ms)
 		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (56ms)
-			BeforeProcessingInitializeOnLoad (101ms)
-			ProcessInitializeOnLoadAttributes (129ms)
+			InitializePlatformSupportModulesInManaged (66ms)
+			BeforeProcessingInitializeOnLoad (115ms)
+			ProcessInitializeOnLoadAttributes (138ms)
 			ProcessInitializeOnLoadMethodAttributes (108ms)
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
 [Licensing::Client] Error: HandshakeResponse reported an error:
 	ResponseCode: 505
 	ResponseStatus: Unsupported protocol version '1.18.1'.
 [Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-LEGION"
 [Licensing::IpcConnector] LicenseClient-LEGION channel disconnected successfully.
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-LEGION-6000.4.2" at "2026-05-22T11:51:35.7129838Z"
-========================================================================
-Worker process is ready to serve import requests
-Import Worker Mode flag is 0x00
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-LEGION-6000.4.2" at "2026-06-10T15:43:01.2271882Z"
 Begin MonoManager ReloadAssembly
 [Licensing::Module] Licensing is not yet initialized.
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.18.1+9fbee8e
-  Session Id:              0943d73a2ef241de90d9d46f918c822d
-  Correlation Id:          df633804fb542708258c1d7da0cd8758
-  External correlation Id: 5219629982779737625
+  Session Id:              7b40896f0e3e4f69a30d4749f35ada63
+  Correlation Id:          585041c32f378a71e4a6564acae6f028
+  External correlation Id: 7437577287471538642
   Machine Id:              tzhtZxhvCXxp/GomqbiF3TPk4uQ=
-[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-LEGION-6000.4.2" (connect: 0.01s, validation: 0.00s, handshake: 2.03s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-LEGION-6000.4.2-notifications" at "2026-05-22T11:51:37.746996Z"
-[Licensing::Module] Licensing Background thread has ended after 4.53s
-[Licensing::Module] Licensing is initialized (took 1.91s).
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-LEGION-6000.4.2" (connect: 0.00s, validation: 0.00s, handshake: 2.10s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-LEGION-6000.4.2-notifications" at "2026-06-10T15:43:03.32869Z"
+[Licensing::Module] Licensing Background thread has ended after 4.65s
+[Licensing::Module] Licensing is initialized (took 2.02s).
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Module] License group:
   Id: 18968344361100-UnityPersXXXX
@@ -165,6 +165,7 @@ Begin MonoManager ReloadAssembly
 Assembly Assembly-CSharp-Editor-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll not valid. Loading of assembly skipped.
 Assembly Assembly-CSharp-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll not valid. Loading of assembly skipped.
 Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
+Assembly McpUnity.Editor.Tests.dll at Library/ScriptAssemblies/McpUnity.Editor.Tests.dll not valid. Loading of assembly skipped.
 Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
 Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
 Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
@@ -191,487 +192,922 @@ Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Un
 Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
 Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
 Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Symbol file LoadedFromMemory is not a mono symbol file
+Refreshing native plugins compatible for Editor in 2.77 ms, found 4 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-Refreshing native plugins compatible for Editor in 2.10 ms, found 4 plugins.
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.913 seconds
-Domain Reload Profiling: 3732ms
-	BeginReloadAssembly (2107ms)
+- Finished resetting the current domain, in  0.864 seconds
+Domain Reload Profiling: 3931ms
+	BeginReloadAssembly (2253ms)
 		DisableScriptedObjects (8ms)
-		CreateAndSetChildDomain (33ms)
-	RebuildCommonClasses (39ms)
+		CreateAndSetChildDomain (37ms)
+	RebuildCommonClasses (43ms)
 	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (83ms)
-	LoadAllAssembliesAndSetupDomain (577ms)
-		LoadAssemblies (408ms)
-		AnalyzeDomain (273ms)
-			TypeCache.Refresh (191ms)
-				TypeCache.ScanAssembly (176ms)
-			BuildScriptInfoCaches (70ms)
-			ResolveRequiredComponents (10ms)
-	FinalizeReload (913ms)
+	initialDomainReloadingComplete (81ms)
+	LoadAllAssembliesAndSetupDomain (676ms)
+		LoadAssemblies (476ms)
+		AnalyzeDomain (316ms)
+			TypeCache.Refresh (225ms)
+				TypeCache.ScanAssembly (204ms)
+			BuildScriptInfoCaches (77ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (865ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (3ms)
-			BeforeProcessingInitializeOnLoad (161ms)
-			ProcessInitializeOnLoadAttributes (385ms)
-			ProcessInitializeOnLoadMethodAttributes (94ms)
-			AfterProcessingInitializeOnLoad (4ms)
-		AwakeInstancesAfterBackupRestoration (6ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+			BeforeProcessingInitializeOnLoad (168ms)
+			ProcessInitializeOnLoadAttributes (339ms)
+			ProcessInitializeOnLoadMethodAttributes (87ms)
+			AfterProcessingInitializeOnLoad (3ms)
+		AwakeInstancesAfterBackupRestoration (8ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
 Unloading 24 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6540 unused Assets / (5.2 MB). Loaded Objects now: 7347.
-Memory consumption went from 152.4 MB to 147.2 MB.
-Total: 9.359100 ms (FindLiveObjects: 0.865700 ms CreateObjectMapping: 0.582600 ms MarkObjects: 5.069600 ms  DeleteObjects: 2.838700 ms)
+Unloading 6610 unused Assets / (6.2 MB). Loaded Objects now: 7414.
+Memory consumption went from 155.1 MB to 148.9 MB.
+Total: 10.882400 ms (FindLiveObjects: 0.992500 ms CreateObjectMapping: 0.897300 ms MarkObjects: 5.600700 ms  DeleteObjects: 3.388000 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 13688.995122 seconds.
-  path: Assets/TutorialInfo
-  importAddress: Guid(ba062aa6c92b140379dbc06b43dd3b9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TutorialInfo using Guid(ba062aa6c92b140379dbc06b43dd3b9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'b99c1674da863178b8182cbba0118615') in 0.0106464 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9d59df2b4d2a74b1cff56c46500404b9 DependenciesID=a7e62338ed5e7f4282cdb5d6d504a788 StaticDependenciesID=8ae54785c0cca1d34b2e705107f8a65a 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 63.343041 seconds.
-  path: Assets/Settings/DefaultVolumeProfile.asset
-  importAddress: Guid(ab09877e2e707104187f6f83e2f62510) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Settings/DefaultVolumeProfile.asset using Guid(ab09877e2e707104187f6f83e2f62510) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '96c56f31cc87df5f3c214537a12d4735') in 0.0172895 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8e124825f5b2e8a59c63b9aafa24511d DependenciesID=b25d6f3ea9b216473dfb5f761027709f StaticDependenciesID=68b31a52ef98057c8b7274a4409dc056 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/Settings/Mobile_RPAsset.asset
-  importAddress: Guid(5e6cbd92db86f4b18aec3ed561671858) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Settings/Mobile_RPAsset.asset using Guid(5e6cbd92db86f4b18aec3ed561671858) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '49eecdcc74c4aab5514775b32ce5159a') in 0.0022271 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d504da95e0c9d5a239a61cc32981aa1f DependenciesID=e77255fca8eba7fe7801970ce1e27185 StaticDependenciesID=16e4dbb8c7c3a853f0b496ca17309243 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000034 seconds.
-  path: Assets/Settings/PC_RPAsset.asset
-  importAddress: Guid(4b83569d67af61e458304325a23e5dfd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Settings/PC_RPAsset.asset using Guid(4b83569d67af61e458304325a23e5dfd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '364c99c873e5e5d1270c2078402a1871') in 0.0008882 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9a59067ea534325d44c5e3c476e23968 DependenciesID=2b39e736e369704bcbc8d109631dae00 StaticDependenciesID=5f1449df5ac1552ea11ec2b27649dd45 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Settings/PC_Renderer.asset
-  importAddress: Guid(f288ae1f4751b564a96ac7587541f7a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Settings/PC_Renderer.asset using Guid(f288ae1f4751b564a96ac7587541f7a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'c78cd9da6cbe0cc59062434b1df014b1') in 0.0012904 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c6431ea82bab0d9b310613b0d7fbdf96 DependenciesID=8f90c646ee0372394a92d8e795500d86 StaticDependenciesID=d43e551793c6c90d0791b8523f845d7a 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.908880 seconds.
-  path: Assets/TutorialInfo/Icons/URP.png
-  importAddress: Guid(727a75301c3d24613a3ebcec4a24c2c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TutorialInfo/Icons/URP.png using Guid(727a75301c3d24613a3ebcec4a24c2c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'bd5beef7055a6aa08905f99e4736cff9') in 0.1524941 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=39482b9a04a46a3596fb3783562c53cd DependenciesID=fc3c2e32e5b95e4acacc3a7d3e706533 StaticDependenciesID=6f1c4066f650bd84f910fcb916d773cf 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 33.028244 seconds.
-  path: Assets/Scripts/Player/PlayerInteractionRaycaster.cs
-  importAddress: Guid(34c53ff64e31455583e42a788ca7d783) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scripts/Player/PlayerInteractionRaycaster.cs using Guid(34c53ff64e31455583e42a788ca7d783) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e957aeb394a3ffb8ebe345bd45e7a08b') in 0.1069656 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=44e4f046200c0dc47ce1c391b0e7590e DependenciesID=0995583dd59cda9a41e35e1a6952a375 StaticDependenciesID=597ae2e10baf36eaff9c90a51d207cd4 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000040 seconds.
-  path: Assets/Scripts/Player/IPlayerInteractable.cs
-  importAddress: Guid(416ccd3c0c2b4a58b8f5c311aed5329d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scripts/Player/IPlayerInteractable.cs using Guid(416ccd3c0c2b4a58b8f5c311aed5329d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e59eb741f9bade482a298b2a5f68b74b') in 0.0229541 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9cc8fda228d0a7d8663b2b794ab8820c DependenciesID=d09bbe6ab70b8771201d386c61434d44 StaticDependenciesID=7ce454f9364af5b9c2d238e39259a782 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000036 seconds.
-  path: Assets/Scripts/Player
-  importAddress: Guid(9d5ecf64b73741b1a9c766dc62539850) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scripts/Player using Guid(9d5ecf64b73741b1a9c766dc62539850) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a017b7363fc9f9a46a0bfd9e3b9f92d2') in 0.0228467 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d39cf6b19c1c6d24a771f27e4c082b36 DependenciesID=060071e90b20f2daf0752693b2fe805f StaticDependenciesID=7ce38b391e977afeb2eab16e825b27fd 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.937753 seconds.
-  path: Assets/New Material.mat
+  Time since last request: 30251.665037 seconds.
+  path: Assets/Temp Player Material.mat
   importAddress: Guid(857a2f1671663cc409f1c4b5a2d7e83a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/New Material.mat using Guid(857a2f1671663cc409f1c4b5a2d7e83a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'bc5b296084e402a35b997275b5095c94') in 0.0539813 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f42da9ea95f92fe0fd8342b33c17fa6a DependenciesID=ec5a477d9de4d822314a81ae0235a8fd StaticDependenciesID=56fab7a6b0e365e40a77831d8ffb0cbc 
+Start importing Assets/Temp Player Material.mat using Guid(857a2f1671663cc409f1c4b5a2d7e83a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5bc75ec1e1be9a726bdf91b7e5d602c2') in 0.1243556 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=10dd74ed60838a413eb6f4fda1fbfcb1 DependenciesID=797d322e1fa54deec0c111b63f6ea13e StaticDependenciesID=fad22a52f5f163c22ff3cf3c151c3c90 
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-[Licensing::Client] Successfully resolved entitlement details
-Assembly Assembly-CSharp-Editor-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll not valid. Loading of assembly skipped.
-Assembly Assembly-CSharp-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll not valid. Loading of assembly skipped.
-Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
-Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
-Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
-Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Universal.Config.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Universal.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Universal.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
-Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
-Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
-Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
-Assertion failed on expression: 'pred(*previous, *i)'
-Assertion failed on expression: 'pred(*previous, *i)'
-Assertion failed on expression: 'pred(*previous, *i)'
-Assertion failed on expression: 'pred(*previous, *i)'
-Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.880 seconds
-Domain Reload Profiling: 1789ms
-	BeginReloadAssembly (241ms)
-		DisableScriptedObjects (7ms)
-		CreateAndSetChildDomain (64ms)
-	RebuildCommonClasses (37ms)
-	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (61ms)
-	LoadAllAssembliesAndSetupDomain (558ms)
-		LoadAssemblies (401ms)
-		AnalyzeDomain (264ms)
-			TypeCache.Refresh (10ms)
-			BuildScriptInfoCaches (235ms)
-			ResolveRequiredComponents (16ms)
-	FinalizeReload (880ms)
-		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (3ms)
-			BeforeProcessingInitializeOnLoad (165ms)
-			ProcessInitializeOnLoadAttributes (367ms)
-			ProcessInitializeOnLoadMethodAttributes (104ms)
-			AfterProcessingInitializeOnLoad (4ms)
-		AwakeInstancesAfterBackupRestoration (22ms)
-Refreshing native plugins compatible for Editor in 2.09 ms, found 4 plugins.
-Unloading 24 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6537 unused Assets / (4.9 MB). Loaded Objects now: 7368.
-Memory consumption went from 158.5 MB to 153.6 MB.
-Total: 10.009300 ms (FindLiveObjects: 0.772500 ms CreateObjectMapping: 0.621700 ms MarkObjects: 5.367400 ms  DeleteObjects: 3.246500 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-[Licensing::Client] Successfully resolved entitlement details
-Assembly Assembly-CSharp-Editor-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll not valid. Loading of assembly skipped.
-Assembly Assembly-CSharp-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll not valid. Loading of assembly skipped.
-Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
-Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
-Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
-Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Universal.Config.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Universal.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Universal.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
-Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
-Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
-Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
-Assertion failed on expression: 'pred(*previous, *i)'
-Assertion failed on expression: 'pred(*previous, *i)'
-Assertion failed on expression: 'pred(*previous, *i)'
-Assertion failed on expression: 'pred(*previous, *i)'
-Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.722 seconds
-Domain Reload Profiling: 1538ms
-	BeginReloadAssembly (237ms)
-		DisableScriptedObjects (6ms)
-		CreateAndSetChildDomain (58ms)
-	RebuildCommonClasses (41ms)
-	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (60ms)
-	LoadAllAssembliesAndSetupDomain (465ms)
-		LoadAssemblies (363ms)
-		AnalyzeDomain (211ms)
-			TypeCache.Refresh (12ms)
-			BuildScriptInfoCaches (186ms)
-			ResolveRequiredComponents (11ms)
-	FinalizeReload (723ms)
-		SetupLoadedEditorAssemblies (0ms)
-			BeforeProcessingInitializeOnLoad (146ms)
-			ProcessInitializeOnLoadAttributes (282ms)
-			ProcessInitializeOnLoadMethodAttributes (77ms)
-			AfterProcessingInitializeOnLoad (3ms)
-		AwakeInstancesAfterBackupRestoration (17ms)
-Unloading 24 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6536 unused Assets / (6.0 MB). Loaded Objects now: 7371.
-Memory consumption went from 160.9 MB to 154.9 MB.
-Total: 10.617000 ms (FindLiveObjects: 0.772900 ms CreateObjectMapping: 0.642600 ms MarkObjects: 5.602100 ms  DeleteObjects: 3.598000 ms)
-
-Prepare: number of updated asset objects reloaded= 1
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-Assembly Assembly-CSharp-Editor-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll not valid. Loading of assembly skipped.
-Assembly Assembly-CSharp-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll not valid. Loading of assembly skipped.
-Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
-Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
-Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
-Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Universal.Config.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Universal.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.RenderPipelines.Universal.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
-Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
-Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
-Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
-Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
-Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
-Assertion failed on expression: 'pred(*previous, *i)'
-Assertion failed on expression: 'pred(*previous, *i)'
-Assertion failed on expression: 'pred(*previous, *i)'
-Assertion failed on expression: 'pred(*previous, *i)'
-Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.712 seconds
-Domain Reload Profiling: 1484ms
-	BeginReloadAssembly (212ms)
-		DisableScriptedObjects (6ms)
-		CreateAndSetChildDomain (53ms)
-	RebuildCommonClasses (36ms)
-	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (63ms)
-	LoadAllAssembliesAndSetupDomain (449ms)
-		LoadAssemblies (352ms)
-		AnalyzeDomain (194ms)
-			TypeCache.Refresh (8ms)
-			BuildScriptInfoCaches (174ms)
-			ResolveRequiredComponents (11ms)
-	FinalizeReload (712ms)
-		SetupLoadedEditorAssemblies (0ms)
-			BeforeProcessingInitializeOnLoad (138ms)
-			ProcessInitializeOnLoadAttributes (300ms)
-			ProcessInitializeOnLoadMethodAttributes (81ms)
-			AfterProcessingInitializeOnLoad (3ms)
-		AwakeInstancesAfterBackupRestoration (16ms)
-Unloading 24 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6536 unused Assets / (6.0 MB). Loaded Objects now: 7374.
-Memory consumption went from 163.5 MB to 157.6 MB.
-Total: 12.355300 ms (FindLiveObjects: 0.876700 ms CreateObjectMapping: 0.785100 ms MarkObjects: 6.318300 ms  DeleteObjects: 4.373300 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 2.21 ms, found 4 plugins.
-Unloading 24 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6541 unused Assets / (5.8 MB). Loaded Objects now: 7390.
-Memory consumption went from 166.3 MB to 160.5 MB.
-Total: 12.963300 ms (FindLiveObjects: 1.088000 ms CreateObjectMapping: 0.825500 ms MarkObjects: 7.087500 ms  DeleteObjects: 3.960800 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Unloading 24 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6595 unused Assets / (5.9 MB). Loaded Objects now: 7441.
-Memory consumption went from 169.1 MB to 163.2 MB.
-Total: 12.522000 ms (FindLiveObjects: 0.852500 ms CreateObjectMapping: 0.751500 ms MarkObjects: 6.847600 ms  DeleteObjects: 4.068400 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time since last request: 2813.964357 seconds.
-  path: Assets/Scripts/Player/PlayerMotor.cs
-  importAddress: Guid(af4e9a5fae174da884159915abe4a27f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scripts/Player/PlayerMotor.cs using Guid(af4e9a5fae174da884159915abe4a27f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b14977694b7ab1ab025be08bac662764') in 0.1625999 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e2de84163890679bd53e9422bcafd615 DependenciesID=3ecfadc694b1560bfb163e2ae05a9b95 StaticDependenciesID=a09033b1668a95cc04628aa3a6c222b4 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000036 seconds.
-  path: Assets/Scripts/Core/Network/Packet.cs
-  importAddress: Guid(fc955a2faa294fa59894f79e01412576) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scripts/Core/Network/Packet.cs using Guid(fc955a2faa294fa59894f79e01412576) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '689a35da24692fb0a2277086140af687') in 0.0176868 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c87be1b3970c1a56cdbc5084b9fc01f2 DependenciesID=8e97827dfa51e7dc08e67181e5748491 StaticDependenciesID=d734b694b068c69703bb2e7933d1d4ae 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000033 seconds.
-  path: Assets/Tests/EditMode/NetworkingSimulation.EditModeTests.asmdef
-  importAddress: Guid(4f3dc567c8d9496b9e76984138f8ff8f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Tests/EditMode/NetworkingSimulation.EditModeTests.asmdef using Guid(4f3dc567c8d9496b9e76984138f8ff8f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a2f93c03022c7da28018269035691333') in 0.0195553 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d69cc02af1ecfbe3d44636839571ad11 DependenciesID=8db686f7776c6c23a660c74a04d3f894 StaticDependenciesID=137ab8b32f7e6a24c2ebf95938d938ca 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/Scripts/Core/Network/NetworkPort.cs
-  importAddress: Guid(4bd1dcee800a4592a0962ee8caf86779) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scripts/Core/Network/NetworkPort.cs using Guid(4bd1dcee800a4592a0962ee8caf86779) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '33fd199c17eb6efa1dc239d3a79d3c74') in 0.0206185 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e393812d6353ec0896d3b9b3f68faecc DependenciesID=7004c9e860cab128a2a54998b8efbac2 StaticDependenciesID=a0a1436d98683f154ceb75a623be15df 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/Scripts/Core/Levels/LevelManager.cs
-  importAddress: Guid(3b0a15238a36440abe9c0c8b686b532d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scripts/Core/Levels/LevelManager.cs using Guid(3b0a15238a36440abe9c0c8b686b532d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'cc0736ec3fe58ec504d6465dc16d272d') in 0.0173693 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6eba703af64d3e8896179486ab6a3962 DependenciesID=809498ecb7615475d79081ee144493f0 StaticDependenciesID=c7cffc080a598012e81621031803deea 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Scripts/Player/PlayerCameraRig.cs
-  importAddress: Guid(7b4f2caf0b9c42d2a6b8ff7879adb83d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scripts/Player/PlayerCameraRig.cs using Guid(7b4f2caf0b9c42d2a6b8ff7879adb83d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '503f8a74a750eccaf96afb06ad75185e') in 0.0181497 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5d722a7a2b2e54844c180c3efc25658f DependenciesID=236c774778ec0c6d4cc0f3563651c3f8 StaticDependenciesID=1775024cc69a82a3f4057db0213aa846 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000041 seconds.
-  path: Assets/Scripts/Core/Levels
-  importAddress: Guid(604a2b3c180647e5a41cd1fecb0ebce8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scripts/Core/Levels using Guid(604a2b3c180647e5a41cd1fecb0ebce8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '162c7e8e2a5f15212b935ffee58d69c1') in 0.0257301 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=81d6037a35f146df75cdf4379014bc84 DependenciesID=fda189473d7beaa5c7662693043484f0 StaticDependenciesID=9a7f3a500036758ac8074546da1ff276 
+  path: Assets/New Material.mat
+  importAddress: Guid(f6bb7e5b290471d40972061786b785ea) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/New Material.mat using Guid(f6bb7e5b290471d40972061786b785ea) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1a80ef0322288e4f5697b0fdea200af2') in 0.0151685 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3b28e9116a6d93b29c14ab0c091510b5 DependenciesID=14edb97ad141a68fc05018df62327c54 StaticDependenciesID=bdaad32b7bf13535afad1c7ad1ee4f2a 
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/Tests/EditMode
-  importAddress: Guid(6a9615e58fc04275b3a0cf76a5bf887d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Tests/EditMode using Guid(6a9615e58fc04275b3a0cf76a5bf887d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '331a0a7361ec5247bfa5c45445dfb569') in 0.0172829 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=591dadf20a13d93873554eeac1dde825 DependenciesID=4faa48d717d6afe19f80c4ea3c9f94cd StaticDependenciesID=621bbbd00feff9a1b7d7dfc075596f9f 
+  Time since last request: 0.000063 seconds.
+  path: Assets/New Material.mat
+  importAddress: Guid(f6bb7e5b290471d40972061786b785ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/New Material.mat using Guid(f6bb7e5b290471d40972061786b785ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'b5e5f2b45bc41b726c5533bfaf836a43') in 0.6711519 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f5e86f77d59086bf28f7ea0d77878473 DependenciesID=795f54107edfd9f2c7578a17d4d0e713 StaticDependenciesID=e331f7b62e05da23415c3bd83fc3d8e7 
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/Scripts/Player/PlayerInputReader.cs
-  importAddress: Guid(e35ec61c4bef4986a49a897f1bf9ae0a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scripts/Player/PlayerInputReader.cs using Guid(e35ec61c4bef4986a49a897f1bf9ae0a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '8e9a1b5e05b2d8e154cad23a343c0b2a') in 0.0176695 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0163ae18fabb87c29358339c209b46f1 DependenciesID=be27c48017c3e2abefa9504a6de986e8 StaticDependenciesID=bb0e883d525ecf8da4289a04a6e93ffa 
+  Time since last request: 12.969459 seconds.
+  path: Assets/Materials
+  importAddress: Guid(cc6fde7e9cac7a74d90f18a83f746ec9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials using Guid(cc6fde7e9cac7a74d90f18a83f746ec9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '8e1d63906a573a355b9270ee5ac67a3f') in 0.0005591 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=342bcb60d27ab68413a736ac7578fa1e DependenciesID=ec3a3fbb1ebd1da3b14f5f5c33a0252e StaticDependenciesID=ff604c3b808f63646b48abe623d6c675 
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.923216 seconds.
+  path: Assets/Materials
+  importAddress: Guid(cc6fde7e9cac7a74d90f18a83f746ec9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials using Guid(cc6fde7e9cac7a74d90f18a83f746ec9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'aae25f8b5d33916b8587738d51075ce3') in 0.0106711 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a87d5ba1e0113947630eaedca85852c3 DependenciesID=41f243b059bb0d41775c0935aa8e32ca StaticDependenciesID=2c020159f8861a14e1994312e70b3b0d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 13.671909 seconds.
+  path: Assets/Materials/Ground-Terrain
+  importAddress: Guid(efd7b02d5a4e0a14bb0c992c1bc711bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Ground-Terrain using Guid(efd7b02d5a4e0a14bb0c992c1bc711bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'a6713861de85bc9649b59e25524ea45b') in 0.0006548 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5da4045606dc484a860144e56f1ac415 DependenciesID=b2d958fa72514c93c3d2e8804ee8c53c StaticDependenciesID=8a02bca59411b8e5a29078f81bb68245 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.928172 seconds.
+  path: Assets/Materials/Ground-Terrain
+  importAddress: Guid(efd7b02d5a4e0a14bb0c992c1bc711bf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Ground-Terrain using Guid(efd7b02d5a4e0a14bb0c992c1bc711bf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '61965b5bee9c03a833a63c228f7dea26') in 0.012119 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=295884d12f51bca52cf958bbc151a60e DependenciesID=c5a0388d1d88dd776a0c0ffd77bf8904 StaticDependenciesID=65cb81fe2c92d02633fbe292c24bbf4b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.941582 seconds.
+  path: Assets/Materials/Ground-Terrain/Prototype Ground.mat
+  importAddress: Guid(ac8c4193644032a4c891ffd184448ef3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Ground-Terrain/Prototype Ground.mat using Guid(ac8c4193644032a4c891ffd184448ef3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '652032e399f0d6a0261ec1c7b24fb859') in 0.018094 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=97e52ec0b62082f11ecda4a144116d95 DependenciesID=e784b82bee8dcb0324856992ac220ff6 StaticDependenciesID=80543ac7fd76ff0f348f9b00664b08e1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.917746 seconds.
+  path: Assets/Materials/Ground-Terrain/Prototype Ground.mat
+  importAddress: Guid(ac8c4193644032a4c891ffd184448ef3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Ground-Terrain/Prototype Ground.mat using Guid(ac8c4193644032a4c891ffd184448ef3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '61c22419d14071b293e87dc51c684dea') in 0.01133 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7b11d4991d0902a8d888a0e34153a730 DependenciesID=6556a9af627e208a52d0f256e7b9d950 StaticDependenciesID=12a843cb680e2d1ee6f3a23f20c5cb6f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 13.863981 seconds.
+  path: Assets/Materials/Ground-Terrain/Prototype Ground.mat
+  importAddress: Guid(ac8c4193644032a4c891ffd184448ef3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Ground-Terrain/Prototype Ground.mat using Guid(ac8c4193644032a4c891ffd184448ef3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '52868062c56493d152fafad9a4f8d5c0') in 0.1653143 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f0b3c59d90472e174f2bd4db63c31f25 DependenciesID=488f2e06933f9691059d966eb8a15359 StaticDependenciesID=507004a9b67713b366d9b7800b4cdd9b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.768754 seconds.
+  path: Assets/Materials/Ground-Terrain/Prototype Ground.mat
+  importAddress: Guid(ac8c4193644032a4c891ffd184448ef3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Ground-Terrain/Prototype Ground.mat using Guid(ac8c4193644032a4c891ffd184448ef3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '70973c760946339c0aa9560147a7ba74') in 0.010433 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2ee042339c013b735d2f85d8cc2d248e DependenciesID=2219dfc5a5f32e03ee1316aff176f466 StaticDependenciesID=51b0716edec706c0b5cd78beaa32d77b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 55.743690 seconds.
+  path: Assets/Scenes/SampleScene.unity
+  importAddress: Guid(99c9720ab356a0642a771bea13969a05) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/SampleScene.unity using Guid(99c9720ab356a0642a771bea13969a05) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4758ae1b383912b7c5a6e00332517960') in 0.0106327 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b91b2d5ebbf3c86d20bb014d42bae80d DependenciesID=135d2241259a402696535ab179a7a119 StaticDependenciesID=27a80ae948ccd940a7d122395fa0aa55 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 199.444325 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_06.png
+  importAddress: Guid(4d97ddcdc5c39274aba9dee1638b5ea2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_06.png using Guid(4d97ddcdc5c39274aba9dee1638b5ea2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd40615e3d10eb2415d44b4efa015f95a') in 0.0665016 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c3d3daa60271a16e230efff64fb94570 DependenciesID=e0fee442700823e652396718c0dc5306 StaticDependenciesID=0f2f5e70e2e0781612491c6dbe587296 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Light/texture_03.png
+  importAddress: Guid(dbfb11a62fa31874081eee4a42d72ec9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Light/texture_03.png using Guid(dbfb11a62fa31874081eee4a42d72ec9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '688b274a6895069795904089c9d6e4d8') in 0.0193544 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=79b8046aa8659795dd4ecab3b533c0bb DependenciesID=6116c7f6e3d42809561122b7c7ec0776 StaticDependenciesID=cab049204e5a3fa48b9ec1a9d7372405 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000070 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_04.png
+  importAddress: Guid(1787f8912fe7cd34ca8fe38c79ab4ec5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_04.png using Guid(1787f8912fe7cd34ca8fe38c79ab4ec5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5d1b4af178bcf74ca1df276a12163a07') in 0.0246119 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=25e275dedee5ed36378de475ec530962 DependenciesID=b53c7d36fce4da89684693ef8afa3284 StaticDependenciesID=2f4fd5aabdc968ec044b60c519d11a27 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_08.png
+  importAddress: Guid(e31248cc7a14abb4480383b69562f432) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_08.png using Guid(e31248cc7a14abb4480383b69562f432) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a222bab6974e12c282234375ada7b596') in 0.0205948 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a76d02dc0d9e11314482e7ebeae65e33 DependenciesID=57a126237c0e144d05bf0eccd9f23a93 StaticDependenciesID=405997a240b80e948636adc9fcc4a17b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Light/texture_13.png
+  importAddress: Guid(60ac1e5204b88ae4a8e02ec0c32d48a1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Light/texture_13.png using Guid(60ac1e5204b88ae4a8e02ec0c32d48a1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '488401c398b71b02bb05a4c79ab898f4') in 0.0194652 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=54a4da9cafa758a86777efafaf348131 DependenciesID=628afe41ae9a039e6b3708f16a7a49d4 StaticDependenciesID=7200676f760011dc2ca657d50369e977 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_10.png
+  importAddress: Guid(ea366ce7c7127594d8006717dd981419) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_10.png using Guid(ea366ce7c7127594d8006717dd981419) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '595d290ee916325e6f8fe9199511d414') in 0.0208194 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6d3bc01da3ba893b255845d39149c784 DependenciesID=89fad7d447b180f164dbce1dd491e142 StaticDependenciesID=7690031d917b3d0b150e41c577b9613c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_10.png
+  importAddress: Guid(5e655ab7e42f1ea48be2d85edde8fc1c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_10.png using Guid(5e655ab7e42f1ea48be2d85edde8fc1c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ca20db9ac6e4ebae222f71693a231f3d') in 0.0223442 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=106bc08c2da6398c064293ce22d235d0 DependenciesID=4af9c4eaacbfb5efd1e815562031240a StaticDependenciesID=c67a1b4c10bf3782abcd190a6e4bb8f0 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000025 seconds.
-  path: Assets/Scripts/Core/Network/EndDeviceNode.cs
-  importAddress: Guid(9596ef1626b44af0b5a8b3ca8253b47e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scripts/Core/Network/EndDeviceNode.cs using Guid(9596ef1626b44af0b5a8b3ca8253b47e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '20725ad03b32622617e130aea0063360') in 0.0214241 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=671e52f55eb2112169f992407ff704c5 DependenciesID=5a0ef97c9514842b020e83da66717c59 StaticDependenciesID=3c5e63191b4fdf86fe0d34fae93a81bd 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000057 seconds.
-  path: Assets/Tests/EditMode/NetworkGraphTests.cs
-  importAddress: Guid(f399b5cbf67240949e6d247bd8bbd2f4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Tests/EditMode/NetworkGraphTests.cs using Guid(f399b5cbf67240949e6d247bd8bbd2f4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9dbd25ec73ac7556c1d6353f252f3bc4') in 0.0253863 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c61edab8eac61cc0a591f82d15b89b8f DependenciesID=15947ddfc13180faa0b66a3715e7b288 StaticDependenciesID=0dd96c22df2f7462ae32f12db6ae2985 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000045 seconds.
-  path: Assets/Temp Player Material.mat
-  importAddress: Guid(857a2f1671663cc409f1c4b5a2d7e83a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Temp Player Material.mat using Guid(857a2f1671663cc409f1c4b5a2d7e83a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b63888e31bd7f57a4561c116f427750a') in 0.0709898 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ad34792a286be2e5e5a544e1c2de888d DependenciesID=3c00aad809e9b1d04791896e9b4c452f StaticDependenciesID=95f443272f1e46282be51c2a138f0619 
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_11.svg
+  importAddress: Guid(22fa9e0389d9912439ff79daf2bcdddc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_11.svg using Guid(22fa9e0389d9912439ff79daf2bcdddc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b26df7b491e2d00752071123c40ff56f') in 0.0479526 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=903201ecc5389d97229663c54d657851 DependenciesID=020c868f69808fb625d3adf89f52a484 StaticDependenciesID=077427f8f3f9909c8776eb9e79ae7112 
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Scripts/Core/Network/NetworkEdge.cs
-  importAddress: Guid(b3c65074d60e4753800ed4eb03bbb239) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scripts/Core/Network/NetworkEdge.cs using Guid(b3c65074d60e4753800ed4eb03bbb239) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2f0e2434a8e627a479e5afb4e5a5b626') in 0.0195929 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d1a0dba0e12666670b7e86025fc8c54a DependenciesID=c94762470c3f3eb870776152d3a4d3bc StaticDependenciesID=5d9f8097cc926de71b2a6e7056e32f3f 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+  Time since last request: 0.000030 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_05.png
+  importAddress: Guid(f480da209f669284f8b90fbd901faaca) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_05.png using Guid(f480da209f669284f8b90fbd901faaca) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'af7d0090ac7025be2b8d815b3c010995') in 0.0233796 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=16fbb136ab4c9c3fd46c4063ffe5c2ac DependenciesID=e8794ce4c3ba4a1b7614d6d67695f752 StaticDependenciesID=0baacfd16a42c13dd35358ba4b5fff83 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000050 seconds.
-  path: Assets/Scripts/Core/Network/RouterNode.cs
-  importAddress: Guid(b1432dd983bb49d68e39044eb91ca309) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scripts/Core/Network/RouterNode.cs using Guid(b1432dd983bb49d68e39044eb91ca309) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e0a2a5de9b031f58455593f826bb86b1') in 0.0216145 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e1937a143f21ca22dea506f27e122cb3 DependenciesID=16de61431e2f3c3d923d8fc3883c127f StaticDependenciesID=35d79f41e64b91c8407eb798c85f4eb2 
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+  Time since last request: 0.000049 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_03.png
+  importAddress: Guid(4c7491d4e7c651749998bef3016152f5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_03.png using Guid(4c7491d4e7c651749998bef3016152f5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a7325614cb2de6e99f9109ff52e61ea8') in 0.0353322 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5bd90589f8f792a43c2a1c6dd552ae11 DependenciesID=028d37ef39f4e1b1b960c02fbf64f54a StaticDependenciesID=addb0259664f48d09205f2840b2b307d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_11.png
+  importAddress: Guid(29859c694e7946647ba44daa58bedb6d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_11.png using Guid(29859c694e7946647ba44daa58bedb6d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1426c84569c26ac2bb65ce9c7943a2aa') in 0.0245413 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=54b12c304d3e2414bcacadc5af26765c DependenciesID=f56b292e3920a278c5ce2e3992d3a293 StaticDependenciesID=56f8c04dc5f3cbc4f7afc5154cb0de6f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Light
+  importAddress: Guid(8f37b7561e500c741a1c79ed33bf26fd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Light using Guid(8f37b7561e500c741a1c79ed33bf26fd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9cbdd3b9dcd2e5f3f5dbaba68f0de55c') in 0.0146849 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=44e59cc44042e127c0a63799abfce5ff DependenciesID=d70f5216f62af65d35767ae7ea095dd1 StaticDependenciesID=4a96a01d4a1f62d90c4ffd23268a7e19 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000027 seconds.
-  path: Assets/Scripts/Core/Network/RouteSimulationResult.cs
-  importAddress: Guid(243bb972c9064ef895486e67adc79e3d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scripts/Core/Network/RouteSimulationResult.cs using Guid(243bb972c9064ef895486e67adc79e3d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '7f55e930475305ebfb1bd03d41a5c363') in 0.0195701 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=42a802fdc798b39eccd306f885dcc85e DependenciesID=80ae3fcb8ec6360d4064253232fbb6e6 StaticDependenciesID=35fe6d4d92caa4259bfdfc02eb02a0b1 
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple
+  importAddress: Guid(318b7a85a9afca24293f40a68d342b7a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple using Guid(318b7a85a9afca24293f40a68d342b7a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ee93dadfae696e2a068243f437f8acb0') in 0.0151365 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=24aa3cd020c791f1b1348d10ea5fa0e5 DependenciesID=5f9f605ac0ca42ccde72016011a84565 StaticDependenciesID=3a2db2ea582ebe8700cc885c80bddb3b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_07.png
+  importAddress: Guid(dd5ac9896253e1847865562fe7c0436b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_07.png using Guid(dd5ac9896253e1847865562fe7c0436b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '52253e3fe83289af0691d01223063042') in 0.0185705 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ffc4a1cb4d4c6f34b338385d737a539c DependenciesID=46e39f0960dbf33ead0c7d4f2c7a46e0 StaticDependenciesID=07b298aefd7ac172df93aa5e82ae883e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_08.swf
+  importAddress: Guid(a7ddc7623702be44e868a592f0da7744) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_08.swf using Guid(a7ddc7623702be44e868a592f0da7744) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '24f98579a85b22ff59ff540b78a046b6') in 0.0621041 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5b382e500359dfee08e087b891794bf2 DependenciesID=a630c7ab5d0d13d6dbdf35eff138f44b StaticDependenciesID=05cbc9b597b0ecf2cc976afdd63fffe7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_03.swf
+  importAddress: Guid(4ee57ddd41dd45d46984719501e4fcdf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_03.swf using Guid(4ee57ddd41dd45d46984719501e4fcdf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '3ccf5948c8e3ea6f3107dd7a6124c627') in 0.0139983 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=21652e53394208e705c94b40a224ffcc DependenciesID=7b8a85e62e4e0954ec9bb5b5f12e6e9c StaticDependenciesID=fb2de26a0450f583315a4693c11ca0e9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_01.png
+  importAddress: Guid(6790e0b1bece36344880c457947852dd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_01.png using Guid(6790e0b1bece36344880c457947852dd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a33ed8406c53a44f1c781830457cb33d') in 0.0273358 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bd5dec23c9322f671582e9cf9d9b89f7 DependenciesID=3b3a9ee06ec8f275471c7aad022c6f68 StaticDependenciesID=715438d2f705fedf48d33d38d0f59e36 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_13.png
+  importAddress: Guid(5914bc58567f5a042b5467da86d60a35) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_13.png using Guid(5914bc58567f5a042b5467da86d60a35) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e86feffc44ab434dbf65f96e3aa576b7') in 0.0288674 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c8b435bc0262775d71b33c3db453f614 DependenciesID=ac77083454a1083b911bec80c7ea9f35 StaticDependenciesID=73f8556fbd6893e88461a4933692ee66 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_13.png
+  importAddress: Guid(e256a08bd8aaa174783ae17291d2b8a7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_13.png using Guid(e256a08bd8aaa174783ae17291d2b8a7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'dbf01c91fc0bc4e6991ea3224288eed1') in 0.021727 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=80033a63c9e129b5e0c7a794ddd358c6 DependenciesID=9734efe92f0272f2fb5e7e1821b874ee StaticDependenciesID=43032f158616cfac6188c9eef4295613 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Orange/texture_02.png
+  importAddress: Guid(63cdad5aebe8dd24c90d78ff132c6543) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Orange/texture_02.png using Guid(63cdad5aebe8dd24c90d78ff132c6543) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'db7c04ad5544e9666abf9199ec523296') in 0.0200813 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a0cacaff84f6194ebba9078eba453110 DependenciesID=911ae06a9af25035bb0d5ee43d91316d StaticDependenciesID=5c2c22070938ca48a7af9dcfb07f6749 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_06.swf
+  importAddress: Guid(cc17a4e618aa9c140a02f23169567156) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_06.swf using Guid(cc17a4e618aa9c140a02f23169567156) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'bfeb2ab8ec9bb0a01861b3236ba5b84b') in 0.0148888 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c41f32e9190ae72d6fb5cbb3d8f2ada5 DependenciesID=74b2a290a5baea186e45db2197fe1b02 StaticDependenciesID=71e876e078f7905ff583d7d4ffc896b2 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_07.png
+  importAddress: Guid(afa8cdb4e2f3ae44a8da63b047ae7633) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_07.png using Guid(afa8cdb4e2f3ae44a8da63b047ae7633) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd5f1b4d0f32c09ce7e3659e3064a3ddb') in 0.0190737 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=36da81d063022f9950571eb051dc90ba DependenciesID=5163175dd425891df54c2f9fb6e5b919 StaticDependenciesID=756a2829daf597e1bd4cc9ca7af85f86 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000074 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_01.swf
+  importAddress: Guid(3b83e5d49238d6f46991aecf03cb9659) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_01.swf using Guid(3b83e5d49238d6f46991aecf03cb9659) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'df8a6ee42123217640b825d2ef93cfb6') in 0.0129315 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=31e57423e4a69776f73f0a62d80d1bd9 DependenciesID=5479ae86caa726996d7cd665d748e15d StaticDependenciesID=0c4a82008ac432c45a932fcd95ae0cf8 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_06.svg
+  importAddress: Guid(c834ba70eb1999149b290af8ac82e714) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_06.svg using Guid(c834ba70eb1999149b290af8ac82e714) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '231997e0350149981349774049a68ae5') in 0.0175958 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=53c76ff26531000e0b5ad94393bdc08e DependenciesID=73fa9dfbd75e37505a71cc32f03de549 StaticDependenciesID=c3cbf8ffa3d8babdefcd81437dcfd80b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Orange/texture_07.png
+  importAddress: Guid(def76782324bc0349bc8ae1ca373f317) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Orange/texture_07.png using Guid(def76782324bc0349bc8ae1ca373f317) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ec61df29eef80912212621ec7baf4ce7') in 0.0197357 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8319c2ca018675053386cd2911930cdc DependenciesID=4019a2fe755690c581a960abe8b17ed0 StaticDependenciesID=2ec744a1e09da12f1d97544ff0a3fef7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_10.svg
+  importAddress: Guid(591723467c033d145b3d16cfd69eb52d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_10.svg using Guid(591723467c033d145b3d16cfd69eb52d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ec535cf6cf3e37c6e8fd10e0c8da3f59') in 0.0176583 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e4da6b0a6f8a9f12d4c8f87b880e2215 DependenciesID=18e799609bc4d08bfbf8a6aa2dbfd6a9 StaticDependenciesID=f2754f2324c2d3e64059101093832762 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_05.png
+  importAddress: Guid(a1115f9c18831624eb4dbd7a84449929) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_05.png using Guid(a1115f9c18831624eb4dbd7a84449929) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e36c7d99bbdc95d524f987239e627534') in 0.0169392 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=fde2e4cfa7854ddbaa501d78c480a633 DependenciesID=946cb18ea8d880dd9a907fdd64e3c029 StaticDependenciesID=1b6a994e5af6cee99db70b91cac154e6 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_03.svg
+  importAddress: Guid(f7d8f196f60948d4180a1c55f5c93652) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_03.svg using Guid(f7d8f196f60948d4180a1c55f5c93652) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '11d908c5316efda9314dcb0c91a6804f') in 0.0200036 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7cb7e2543e2eff380e8a95fbb49187e1 DependenciesID=7f281d682367fe286d822df44b946a87 StaticDependenciesID=0f1158b2bfa7b9ea0f2a404abec0ba65 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Orange/texture_09.png
+  importAddress: Guid(9056a12bc70564447a93b2af11190fa8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Orange/texture_09.png using Guid(9056a12bc70564447a93b2af11190fa8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5121654b7bdcfd0e7322681edfbf4b94') in 0.0190601 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b10e8719154d2b51127ce6b0b5932523 DependenciesID=37bf5bd483133efdfa4cad8c4bbc7f11 StaticDependenciesID=e3072dff489cc8990cb0aaa9763011fd 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Light/texture_06.png
+  importAddress: Guid(290517bde37625343a81d5940b947aa7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Light/texture_06.png using Guid(290517bde37625343a81d5940b947aa7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'aab7f23d0b2cb751c59e70febf574b88') in 0.047283 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=dfcd01775fa681649ef4ce0a5213df6f DependenciesID=399f7eb702bcbc94be89825234e3ffb4 StaticDependenciesID=c94aea53a75da40b2b42077acd1657e1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Orange
+  importAddress: Guid(abc3b8c0b48c9ce4b922f941b3fa52ff) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Orange using Guid(abc3b8c0b48c9ce4b922f941b3fa52ff) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c5c52b4558f8def09b945763f56bd23c') in 0.0130082 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5d209c49f090f5ef4df30a1ff7139988 DependenciesID=b01774adcdc66b4fcd146a24f72260ae StaticDependenciesID=1017615402531d0ce29918681c7caed9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_07.svg
+  importAddress: Guid(a10ecce0facb7de448fc57f3c69454c0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_07.svg using Guid(a10ecce0facb7de448fc57f3c69454c0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2b250d8847b53cf535eef05d46f2a57d') in 0.0187531 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5b16d1b55131c82fb50646175065912c DependenciesID=0f134162856374df9bf5a796b3da12bf StaticDependenciesID=f01515f206b1d6c08fc1e99f198c61a1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_12.png
+  importAddress: Guid(6d8f6c3b388d40d4899e25ee3beeae18) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_12.png using Guid(6d8f6c3b388d40d4899e25ee3beeae18) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '08b4e58e41453cc4b6fa3ea0219769f8') in 0.0218607 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f8e04c4acb31918970c2157cfa623ea2 DependenciesID=b0b02b8d044b091002ff4b5ca90412f4 StaticDependenciesID=c4c3189a15ff33c078663cf0d39af008 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000078 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_12.png
+  importAddress: Guid(c87df67a4b38eb6498c58859d75f293e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_12.png using Guid(c87df67a4b38eb6498c58859d75f293e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b00957b7d1da5803716636bfbeb57496') in 0.024378 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=59a38aa5192028eded808f3fac8c51b8 DependenciesID=aaafc1277eafe13c86e7584a1dfc2a24 StaticDependenciesID=40eb5b4376fa1797f1a55fdcbfadbec3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000066 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_04.png
+  importAddress: Guid(cbf6e3e2cc10de347a0460b049afead0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_04.png using Guid(cbf6e3e2cc10de347a0460b049afead0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '830631a73c314bc92ab6a184150861b0') in 0.0203003 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4850e0bffcc99f4fe05cf73dd789d700 DependenciesID=4ed8ac292a42d67100a2142cd450b473 StaticDependenciesID=95837cbf7ae84fb82220cb70b0f913f4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_02.svg
+  importAddress: Guid(5c71ee67aa234654db4a5fac6dbe30b9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_02.svg using Guid(5c71ee67aa234654db4a5fac6dbe30b9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4431cfb2aa996e49704ae3cc5703c2fa') in 0.0204619 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=edd4577ce52f0b4b7f0665567460aaa5 DependenciesID=c7546be95ea74a8e12e289537ba11f9c StaticDependenciesID=9b366eb6c2db2ea14774a9bfbf5a1f64 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Light/texture_05.png
+  importAddress: Guid(027b8e48f3290cc479f1bf361e697c54) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Light/texture_05.png using Guid(027b8e48f3290cc479f1bf361e697c54) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c462fe8cae43b3fd69d263cb0b804c62') in 0.022576 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ab6f378238971be8de5a94780f4f018f DependenciesID=85fb308956123c265c6941f681db7a99 StaticDependenciesID=915dd49f8f365fdace00af6e4f3ec8c1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark
+  importAddress: Guid(9c1ff16d943184c4cab49c238f2bd32f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark using Guid(9c1ff16d943184c4cab49c238f2bd32f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e48715d42f0200e994a7e303cebba099') in 0.0160855 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=95f3244065246acf0c415c31e962f382 DependenciesID=f4815e648af1e4bfcff52eb9f253721b StaticDependenciesID=d1a00e1ef52fa8a5702b8d1c9684f413 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000070 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_09.png
+  importAddress: Guid(fcdcb9825f2aba44b9aa7325d0fb3134) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_09.png using Guid(fcdcb9825f2aba44b9aa7325d0fb3134) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '90f343608c7b6b34729cb6301e8fae74') in 0.0208954 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=16de8819304fd2084e4006ad65e1010c DependenciesID=79af57ec1f3b7044361320a978cf3b88 StaticDependenciesID=6655f5000387bb097fb78a1277e7127f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Light/texture_12.png
+  importAddress: Guid(355c2c423ff09ca47b3c1d093e93b824) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Light/texture_12.png using Guid(355c2c423ff09ca47b3c1d093e93b824) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '86fb7c47e373bc662630503589ffc08c') in 0.0274095 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=98784df14c2e2573564ea061bbd64d34 DependenciesID=f7330b647accb9078094f56073532925 StaticDependenciesID=ec86b8c4c6da7c047022bfcba46b8d25 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000053 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Orange/texture_12.png
+  importAddress: Guid(5f3050732e88f5f45bbc34f57fec497b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Orange/texture_12.png using Guid(5f3050732e88f5f45bbc34f57fec497b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0928c315db83d056488eed4ee59e0c41') in 0.0288592 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2c29d490322f3ff5109582b08f3ba9c3 DependenciesID=d09c9b1a4a21c6dcdab91f805fdb81e8 StaticDependenciesID=332b9b30c91d285aecb4b51e370873c2 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_10.swf
+  importAddress: Guid(3f5e0c1c221cbc44596689b4a4ef29c4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_10.swf using Guid(3f5e0c1c221cbc44596689b4a4ef29c4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a306e48f6603c36743ab6e62d745956c') in 0.0185687 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=049cd1dcc2eb97e17bc2667611d3b212 DependenciesID=04551d4b4a91fafdd1eb8e65b6127064 StaticDependenciesID=f23ab3d44708c0e649840f83ba151bfc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000063 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_03.png
+  importAddress: Guid(2ecbabddc53a40743947333ee57152a1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_03.png using Guid(2ecbabddc53a40743947333ee57152a1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '88e6d5a7e8663458e0519e725ba3e13a') in 0.0257347 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9b1c0f3db9c876addb5fb5f09b8ed65b DependenciesID=4fb8bd1574a490d95337bfe4cca5db0b StaticDependenciesID=578604f3114940187fc68413be965312 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_07.png
+  importAddress: Guid(2548de56ea2111249a1dda225f3f9425) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_07.png using Guid(2548de56ea2111249a1dda225f3f9425) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '161257b0226a667b273776d52bc64b5d') in 0.0246482 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2eb9cce523bb17c90c375db0b887200c DependenciesID=98d48fbd196296ac0a897d69489dde46 StaticDependenciesID=642815e845c064241ee378c9a0f5aacc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_02.png
+  importAddress: Guid(f7bb277f1c7f6834aafe4e67f35f5bf3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_02.png using Guid(f7bb277f1c7f6834aafe4e67f35f5bf3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '022ac746e563f84fce87ad749fd55291') in 0.0181186 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9969d981ce35fd32f02499df36f7a99b DependenciesID=6bfc13daffce3a20bd53d995f82cbc02 StaticDependenciesID=bf653678384d43ff8510946df9275ffc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000074 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_05.swf
+  importAddress: Guid(3cb1e5b2a716af04a9923b2ea2c740f6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_05.swf using Guid(3cb1e5b2a716af04a9923b2ea2c740f6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'fee173ec20f87c4baeda0656bb371e02') in 0.0142123 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3c1dddf27ae6624dcbe760b293408527 DependenciesID=d70c1e341edcbdaeeb7da568000a113a StaticDependenciesID=0740abfd69ed713e92ca5e4641e09a9b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_10.png
+  importAddress: Guid(cbb820781c633ad4ca4715a01fb6ebfc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_10.png using Guid(cbb820781c633ad4ca4715a01fb6ebfc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '89f710484fc95667808e47290efd574c') in 0.0188014 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=da7b6443f0f06dea60bf4f94457d8a48 DependenciesID=c26276e549550eb772f03879757b6e3d StaticDependenciesID=4bddf140519b943437ee26693f2de812 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_11.png
+  importAddress: Guid(a6ee6212f0f889143b77cc1858da6e89) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_11.png using Guid(a6ee6212f0f889143b77cc1858da6e89) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'f56cbaf7ba1cd4c576a3684dbd2caf1f') in 0.0182582 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cd7e67f6770104b6f52e15d9f103fbd8 DependenciesID=59155c84c2308f278b91057f416690c6 StaticDependenciesID=4617cce2189dc899fff0182cb9de8f17 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_09.svg
+  importAddress: Guid(06a489f217b2efb4fa1aa89ad2fecf40) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_09.svg using Guid(06a489f217b2efb4fa1aa89ad2fecf40) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '439eaa39fefe7813c2e210b04afc82eb') in 0.0152879 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=885ce47a9c4ee4c31c2a376d1be94e4a DependenciesID=d2a35de94c2b826717fa12ed2c1973fc StaticDependenciesID=585b9a837e9ccebcf421aaf516be0d0f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_04.swf
+  importAddress: Guid(fc2ad989306032d4f84a441bd1f58994) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_04.swf using Guid(fc2ad989306032d4f84a441bd1f58994) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '40b747755a9942a8f61fc249b15cfae9') in 0.0150709 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ebdd6d1a473fafeeea584c93a2201160 DependenciesID=ef98d821aab9d07c0402cedab24d709a StaticDependenciesID=fdcad45029e177829b4edbf452e84bf9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000053 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_07.swf
+  importAddress: Guid(957d22e8636bf4f49bc03bc8cdd76cd9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/Vector/texture_07.swf using Guid(957d22e8636bf4f49bc03bc8cdd76cd9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b4e0ae8256bef8bc71f4015ca4f6a06e') in 0.015001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=eec329271ad5812964b54bbb86bf07d4 DependenciesID=c7674d65159042269686f0c81d86583c StaticDependenciesID=12f3bae2e81448dbc3258720be60d747 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000054 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_03.png
+  importAddress: Guid(4bd99edbaedc5224090250e756a65e8c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_03.png using Guid(4bd99edbaedc5224090250e756a65e8c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd75857a73e3ae7b48acc21a1d4a06a14') in 0.0201396 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1a8e64831bfdaec366182d086d2e1bfb DependenciesID=9bf0d51d43cf3db577d765f263c7aa99 StaticDependenciesID=37542f7fd10b8bc6b8340cdab35e3a4c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_01.png
+  importAddress: Guid(77347ac8acaedab448881bac92b4c801) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_01.png using Guid(77347ac8acaedab448881bac92b4c801) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '921025464d88dcd50c80947d2acacc20') in 0.0228389 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c9f40e9bcf26f7e73eccf1c2a223ccdc DependenciesID=676b9b45f0b5a8a058e862a5b434e04e StaticDependenciesID=83b747febf07a1a3539c389a30085dd0 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Orange/texture_04.png
+  importAddress: Guid(241f337f5141681459b2f1e9faa1fbd6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Orange/texture_04.png using Guid(241f337f5141681459b2f1e9faa1fbd6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '7054d7828fcf35983c2899aac6cf96c3') in 0.0210908 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8246271cb78cda7cea8d1584f33ba5d9 DependenciesID=0cf66bad3c113e60a5148504ebfd08af StaticDependenciesID=25c34d4103c76307697d4156205d87df 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000070 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures
+  importAddress: Guid(847d0befd8b896541a2079e9c71c1f93) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures using Guid(847d0befd8b896541a2079e9c71c1f93) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '879f1af943959751e0af0c353b5290fb') in 0.0158008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=40f88b8478b6e703402a74d645dc27f1 DependenciesID=0b96b6c47d5f598020e5496dc28d36a0 StaticDependenciesID=c0ee93f34657c2246d922207244c56be 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000057 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_07.png
+  importAddress: Guid(e5b276d2bccc95442ab43ebbfcf269cf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_07.png using Guid(e5b276d2bccc95442ab43ebbfcf269cf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9b3bddbaded625b4133df25e4066716b') in 0.0216305 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c73cd344644023480fa0e508d26cbc5d DependenciesID=d9faab49e803486650b5cfcadaba7a2b StaticDependenciesID=f92e6806f5ea2533172197f901eb6f82 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_06.png
+  importAddress: Guid(68c1591a1041e62438812e99b63cbef9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_06.png using Guid(68c1591a1041e62438812e99b63cbef9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '3eed2065cfe3c8e27f0d782d87daa1f6') in 0.0219815 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6dc1305be097ea618bd02523efaac666 DependenciesID=19b72a9f0f6717cf7bf747e601f63ef4 StaticDependenciesID=c42998301650ee1c22fbc5ce3e5d6e24 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG
+  importAddress: Guid(7ec5bf1927aa9274d9d4b5c969925449) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG using Guid(7ec5bf1927aa9274d9d4b5c969925449) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '3ef3c6b16260602607c17a50bd4e0df3') in 0.0006787 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3a13977309373dabb949def82a68e49f DependenciesID=5d2675e370e8202f1062bf1264cb9e39 StaticDependenciesID=061a10087905b8469e748b2824224163 
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
-Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
-AssetImportWorker is now disconnected from the server
-Process exiting
-Exiting without the bug reporter. Application will terminate with return code 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_11.png
+  importAddress: Guid(450555ec175809c4e855c60e7f344488) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Red/texture_11.png using Guid(450555ec175809c4e855c60e7f344488) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '00d68820f89608a333795eea6d065fe1') in 0.0176481 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7344f2fd58fe3709113ae9443bdf1f2c DependenciesID=4dc32dfd1b211074abbaea713ad69521 StaticDependenciesID=857f6835a63730a78a9e4532181a23aa 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_06.png
+  importAddress: Guid(764eb601c36e5b44eb54820a4aae56d0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_06.png using Guid(764eb601c36e5b44eb54820a4aae56d0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'f358803d34522da83285ccb9792578e8') in 0.0192606 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e251332861af82ab78f9ce11f89e8b4c DependenciesID=374032bb05255642276df89fda7c0d1c StaticDependenciesID=f1a27f74db027fb2cf3d83639d0b9bcb 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_01.png
+  importAddress: Guid(2b0ee648900388d458284f891e67eae8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_01.png using Guid(2b0ee648900388d458284f891e67eae8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '8d94b2df1923ad344db7cb698a96d465') in 0.0184718 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=95aef0b924a7c80f0f1210310a3224f3 DependenciesID=44e4dc9188d72b69369a1cbddf3d79a4 StaticDependenciesID=4aeb74ceaaaed72ac357494243a51250 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.554673 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark
+  importAddress: Guid(9c1ff16d943184c4cab49c238f2bd32f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark using Guid(9c1ff16d943184c4cab49c238f2bd32f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'c6dfabd82102ee886584e41dca94bd00') in 0.001405 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9cab2848cefb5b37a992e90d0bd2722a DependenciesID=b337c7628236e79a41732cda7ff5d7db StaticDependenciesID=a68ff6f58972654298636493f5a0db9c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.019404 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_01.png
+  importAddress: Guid(6790e0b1bece36344880c457947852dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_01.png using Guid(6790e0b1bece36344880c457947852dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'cdf0e187e4eb54591db8bdfc597b44c8') in 0.1199278 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8ca7b9567f7aaab5ebbecbdf004d9941 DependenciesID=13d45ac333ab6924b5128cf7c9f30997 StaticDependenciesID=0264f59073ad6436f01b484b77cee907 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_10.png
+  importAddress: Guid(cbb820781c633ad4ca4715a01fb6ebfc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_10.png using Guid(cbb820781c633ad4ca4715a01fb6ebfc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '4a8dbc2f643a65754efab9f306194ab5') in 0.066306 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8064f2c901fa438d60108b24af605499 DependenciesID=f6c3e1e4a894f1b42ec8b97b620d1303 StaticDependenciesID=9a9d4708b898bb3cab51ce5d76ac47ec 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000052 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_06.png
+  importAddress: Guid(764eb601c36e5b44eb54820a4aae56d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_06.png using Guid(764eb601c36e5b44eb54820a4aae56d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'b68702cf90b8c3492dca4bdb72f4d041') in 0.0267793 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=66a401b3de0147aacccccbbffadb8334 DependenciesID=19c435280a2e9fd0a97e627e42e63eb9 StaticDependenciesID=02470d5ce2e26e5876c93b17a5a47064 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000068 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_11.png
+  importAddress: Guid(29859c694e7946647ba44daa58bedb6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_11.png using Guid(29859c694e7946647ba44daa58bedb6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '8a0a21a39308926beeef9b015cb851ff') in 0.0183459 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0e9869d2bcc935c79e7135af6d9d47ff DependenciesID=eed29c51b0e931c406a6561eaf799e96 StaticDependenciesID=c1ed614345b5457f2244007dc91ff3d7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_12.png
+  importAddress: Guid(895e84bd4d7b4b64fac4230301a5e38d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_12.png using Guid(895e84bd4d7b4b64fac4230301a5e38d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '4d4cbaf5ce11eada004f48fe86ea7256') in 0.0171055 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7f327f336329eb5e092888b6b743a0d9 DependenciesID=8c62de560561f20e768e56343d095dc1 StaticDependenciesID=2189aa5ea84a66cfafcea450458fc4ee 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_05.png
+  importAddress: Guid(2fc53dffda9fb88409925325e51d2596) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_05.png using Guid(2fc53dffda9fb88409925325e51d2596) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'b1f1ae9be91288fb4227c4da3f5ea444') in 0.0174823 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=35686d8d4362ae50e0ab43827de0407c DependenciesID=257ae473de978292c9b6645154e55d84 StaticDependenciesID=a68ec6133d7d86d49cf3ed342bee271f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_08.png
+  importAddress: Guid(f55a9bd2997d5bc4d9f47a92b79d5ff8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/texture_08.png using Guid(f55a9bd2997d5bc4d9f47a92b79d5ff8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '0dfbfb8a5c80c7d2cef909f7c7348f14') in 0.0197225 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1741bf54dc51cff7b9b1f5b2bd66b41d DependenciesID=4eac25f7868c968de8253772cd3b75b4 StaticDependenciesID=aa19552d344fc5f40aadb59ca585efb9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.685179 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_02.png
+  importAddress: Guid(f7bb277f1c7f6834aafe4e67f35f5bf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_02.png using Guid(f7bb277f1c7f6834aafe4e67f35f5bf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'dae5641180ff71fca873e9559f16f2d7') in 0.1406166 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=49229b442769f3c64fbabcbc46896ee7 DependenciesID=39a82828d1f40dc2d6e1262a8ae629cb StaticDependenciesID=455a6bbd840034c5e855bd098ecbeb4d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000107 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_12.png
+  importAddress: Guid(2fe6272c744060c47b5a90b21c23dd0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_12.png using Guid(2fe6272c744060c47b5a90b21c23dd0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '8051f449e4dab97f5ee71f0623251818') in 0.0200841 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8808c7d574cac83af1254d7708d1bca6 DependenciesID=18578ee71778655bcbfe6b4547460fde StaticDependenciesID=c58ff4ff538669beb03d4e6834d76966 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000066 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_09.png
+  importAddress: Guid(22582a4e4586f8b4db17cc91d1e18906) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_09.png using Guid(22582a4e4586f8b4db17cc91d1e18906) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '5233f7b60c948e8cb531134635e942c5') in 0.0199617 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2e09c783c920a38f557f5bfe4353069e DependenciesID=d3efa0da371c51a1e7bf8965c39b2e05 StaticDependenciesID=cb91138638e57b5d19c55b93612a31f5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_10.png
+  importAddress: Guid(5e655ab7e42f1ea48be2d85edde8fc1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Green/texture_10.png using Guid(5e655ab7e42f1ea48be2d85edde8fc1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'dfed3a9d7d31bcac87c3e77de94159c3') in 0.0224464 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ec8c112c4d5a0b84df8e94b5ec8942ff DependenciesID=35371376590c4646eb768c99ab5196fe StaticDependenciesID=d13880269eeefda35b8e6d770c60b718 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.675554 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_02.png
+  importAddress: Guid(cc3fffae6ed78d945a570dcbbc9ed880) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_02.png using Guid(cc3fffae6ed78d945a570dcbbc9ed880) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '8a5c52a8d2ed593169f935ddc0e8af61') in 0.0394415 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=af5f38baa080ab08185e62237fd29162 DependenciesID=d449bcb758386b544c71a63428f94059 StaticDependenciesID=173a824ccf9cb03253af11f603014ec7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_07.png
+  importAddress: Guid(e5b276d2bccc95442ab43ebbfcf269cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_07.png using Guid(e5b276d2bccc95442ab43ebbfcf269cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '2506d14b07cce74649bd8d80c55fa8df') in 0.0238903 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=569b1094353e2cd8876ed6e5dfcfda0f DependenciesID=577cf9694491230f0d6f74d53b404abb StaticDependenciesID=d06298e0aef39594ed12c65038be28bc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_08.png
+  importAddress: Guid(98562f63bb33fde4d8321da470ba9f24) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_08.png using Guid(98562f63bb33fde4d8321da470ba9f24) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'd62829757753da60d8c760c8b90c62b0') in 0.0204747 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=44d01048a48e95b0a586904391343d30 DependenciesID=0f15f1035be7436210fab6d2f0732e22 StaticDependenciesID=3810dc39a2e0b25d7d1ba421e5a37174 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_09.png
+  importAddress: Guid(32e3a8044839f5d4898eadb34d759c88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Purple/texture_09.png using Guid(32e3a8044839f5d4898eadb34d759c88) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'c714cd82aa7f25a02b9ad5d0f56600e9') in 0.0324091 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f13712773dfc793ba71f6fef1cbdbe76 DependenciesID=2ed283b0f9bcd4fbc3e384c1f2713da2 StaticDependenciesID=ca4dccb7350595db55ec78f24760332d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 55.818217 seconds.
+  path: Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/Materials/texture_08.mat
+  importAddress: Guid(5bb4c19abee1e9f40b128b2c678ed890) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Textures/Kenney Prototype Textures/PNG/Dark/Materials/texture_08.mat using Guid(5bb4c19abee1e9f40b128b2c678ed890) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b4296ad3d6cab44724a616e4c26dd0e3') in 0.0152959 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4c7f45ecf0898bcb4618c796b6b4bcd3 DependenciesID=81ceba0ed6e26f1e629521785154024d StaticDependenciesID=d3806aa06c65f55efd45539b121e1639 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 170.618006 seconds.
+  path: Assets/Scenes/SampleScene.unity
+  importAddress: Guid(99c9720ab356a0642a771bea13969a05) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/SampleScene.unity using Guid(99c9720ab356a0642a771bea13969a05) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b5d67d1cdcb5a532389f0df6c14e333e') in 0.0172156 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=824439ac327b7b0395507dc2b0a0b91b DependenciesID=285edf12bb34eb616cf737bd4a5d03ce StaticDependenciesID=846e4b4fd0528cf5a4e7927af8fca0b4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+Assembly Assembly-CSharp-Editor-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll not valid. Loading of assembly skipped.
+Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
+Assembly McpUnity.Editor.Tests.dll at Library/ScriptAssemblies/McpUnity.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
+Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Config.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Symbol file LoadedFromMemory is not a mono symbol file
+Refreshing native plugins compatible for Editor in 2.15 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.171 seconds
+Domain Reload Profiling: 2180ms
+	BeginReloadAssembly (316ms)
+		DisableScriptedObjects (32ms)
+		CreateAndSetChildDomain (83ms)
+	RebuildCommonClasses (41ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (71ms)
+	LoadAllAssembliesAndSetupDomain (567ms)
+		LoadAssemblies (469ms)
+		AnalyzeDomain (229ms)
+			TypeCache.Refresh (9ms)
+			BuildScriptInfoCaches (206ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (1172ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			BeforeProcessingInitializeOnLoad (256ms)
+			ProcessInitializeOnLoadAttributes (460ms)
+			ProcessInitializeOnLoadMethodAttributes (117ms)
+			AfterProcessingInitializeOnLoad (5ms)
+		AwakeInstancesAfterBackupRestoration (25ms)
+Refreshing native plugins compatible for Editor in 2.36 ms, found 4 plugins.
+Unloading 24 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6607 unused Assets / (6.6 MB). Loaded Objects now: 7497.
+Memory consumption went from 167.1 MB to 160.6 MB.
+Total: 17.881700 ms (FindLiveObjects: 1.169400 ms CreateObjectMapping: 1.131100 ms MarkObjects: 10.087200 ms  DeleteObjects: 5.492700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+Assembly Assembly-CSharp-Editor-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll not valid. Loading of assembly skipped.
+Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
+Assembly McpUnity.Editor.Tests.dll at Library/ScriptAssemblies/McpUnity.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
+Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Config.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Symbol file LoadedFromMemory is not a mono symbol file
+Refreshing native plugins compatible for Editor in 2.24 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.865 seconds
+Domain Reload Profiling: 1793ms
+	BeginReloadAssembly (242ms)
+		DisableScriptedObjects (8ms)
+		CreateAndSetChildDomain (63ms)
+	RebuildCommonClasses (39ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (62ms)
+	LoadAllAssembliesAndSetupDomain (572ms)
+		LoadAssemblies (450ms)
+		AnalyzeDomain (227ms)
+			TypeCache.Refresh (9ms)
+			BuildScriptInfoCaches (203ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (865ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (174ms)
+			ProcessInitializeOnLoadAttributes (365ms)
+			ProcessInitializeOnLoadMethodAttributes (101ms)
+			AfterProcessingInitializeOnLoad (3ms)
+		AwakeInstancesAfterBackupRestoration (20ms)
+Refreshing native plugins compatible for Editor in 2.14 ms, found 4 plugins.
+Unloading 24 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6606 unused Assets / (6.2 MB). Loaded Objects now: 7500.
+Memory consumption went from 169.5 MB to 163.3 MB.
+Total: 14.483700 ms (FindLiveObjects: 0.998100 ms CreateObjectMapping: 1.323400 ms MarkObjects: 7.090500 ms  DeleteObjects: 5.070000 ms)
+
+Prepare: number of updated asset objects reloaded= 0
