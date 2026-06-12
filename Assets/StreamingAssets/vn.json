@@ -1,0 +1,80 @@
+{
+  "items": [
+    {
+      "key": "ui_title_menu",
+      "value": "Màn hình chính"
+    },
+    {
+      "key": "ui_btn_menu",
+      "value": "Tùy chọn"
+    },
+    {
+      "key": "ui_btn_start",
+      "value": "Bắt đầu"
+    },
+    {
+      "key": "ui_btn_settings",
+      "value": "Cài đặt"
+    },
+    {
+      "key": "ui_title_audios",
+      "value": "Âm thanh"
+    },
+    {
+      "key": "ui_btn_sounds",
+      "value": "Tiếng động"
+    },
+    {
+      "key": "ui_btn_musics",
+      "value": "Âm nhạc"
+    },
+    {
+      "key": "ui_btn_pause",
+      "value": "Tạm dừng"
+    },
+    {
+      "key": "ui_btn_continue",
+      "value": "Tiếp tục"
+    },
+    {
+      "key": "ui_btn_save",
+      "value": "Lưu"
+    },
+    {
+      "key": "ui_btn_load",
+      "value": "Tải lại"
+    },
+    {
+      "key": "ui_cancel",
+      "value": "Hủy"
+    },
+    {
+      "key": "ui_quit",
+      "value": "Thoát"
+    },
+    {
+      "key": "ui_return",
+      "value": "Trở lại"
+    },
+    {
+      "key": "gp_pick",
+      "value": "Nhặt"
+    },
+    {
+      "key": "gp_place",
+      "value": "Đặt xuống"
+    },
+    {
+      "key": "gp_interact",
+      "value": "Tương tác"
+    },
+    {
+      "key": "gp_open",
+      "value": "Mở"
+    },
+    {
+      "key": "gp_close",
+      "value": "Đóng"
+    }
+  ]
+}

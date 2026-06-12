@@ -1,0 +1,80 @@
+{
+  "items": [
+    {
+      "key": "ui_title_menu",
+      "value": "Main menu"
+    },
+    {
+      "key": "ui_btn_menu",
+      "value": "Menu"
+    },
+    {
+      "key": "ui_btn_start",
+      "value": "Start"
+    },
+    {
+      "key": "ui_btn_settings",
+      "value": "Settings"
+    },
+    {
+      "key": "ui_title_audios",
+      "value": "Audios"
+    },
+    {
+      "key": "ui_btn_sounds",
+      "value": "Sounds"
+    },
+    {
+      "key": "ui_btn_musics",
+      "value": "Musics"
+    },
+    {
+      "key": "ui_btn_pause",
+      "value": "Pause"
+    },
+    {
+      "key": "ui_btn_continue",
+      "value": "Continue"
+    },
+    {
+      "key": "ui_btn_save",
+      "value": "Save"
+    },
+    {
+      "key": "ui_btn_load",
+      "value": "Load"
+    },
+    {
+      "key": "ui_cancel",
+      "value": "Cancel"
+    },
+    {
+      "key": "ui_quit",
+      "value": "Quit"
+    },
+    {
+      "key": "ui_return",
+      "value": "Return"
+    },
+    {
+      "key": "gp_pick",
+      "value": "Pick"
+    },
+    {
+      "key": "gp_place",
+      "value": "Place"
+    },
+    {
+      "key": "gp_interact",
+      "value": "Interact"
+    },
+    {
+      "key": "gp_open",
+      "value": "Open"
+    },
+    {
+      "key": "gp_close",
+      "value": "Close"
+    }
+  ]
+}
